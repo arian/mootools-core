@@ -1,13 +1,11 @@
 /*
 ---
-name: Element.Style
+name: Styles
 description: Contains methods for interacting with the styles of Elements in a fashionable way.
 requires: [Element, Accessor, Color]
-provides: Element.Style
+provides: [Element.Style, DOM.Styles]
 ...
 */
-
-
 
 (function(){
 	

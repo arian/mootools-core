@@ -3,7 +3,7 @@
 name: Element
 description: The MooTools DOM library.
 requires: [Type, typeOf, instanceOf, Array, String, Function, Number, Object, Accessor, Slick.Parser, Slick.Finder, Store]
-provides: [Element, Elements, $, $$]
+provides: [DOM.Element, DOM.Elements, Element, Elements, $, $$]
 ...
 */
 

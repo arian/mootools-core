@@ -1,9 +1,9 @@
 /*
 ---
-name: Event
+name: DOM.Event
 description: Contains the Event Class, to make the event object cross-browser.
 requires: [Type, Browser, Array, Function, String, Accessor, $]
-provides: Event
+provides: [DOM.Event, Event]
 ...
 */
 
