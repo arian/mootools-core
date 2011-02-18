@@ -34,8 +34,7 @@ if (enumerables) enumerables = ['hasOwnProperty', 'valueOf', 'isPrototypeOf', 'p
 Function.prototype.overloadSetter = function(usePlural){
 	var self = this;
 	return function(a, b){
-		if (a == null) return this;
-		if (usePlural || typeof a != 'string'){
+		if (usePlural || (a != null && typeof a != 'string')){
 			for (var k in a) self.call(this, k, a[k]);
 			if (enumerables) for (var i = enumerables.length; i--;){
 				k = enumerables[i];
