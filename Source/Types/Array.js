@@ -79,7 +79,16 @@ Array.implement({
 		}
 		return results;
 	},
-	
+
+	run: function(bind, args){
+		args = Array.from(args);
+		var results = [];
+		for (var i = 0, j = this.length; i < j; i++){
+			if (Type.isFunction(this[i])) results.push(this[i].apply(bind, args));
+		}
+		return results;
+	},
+
 	append: function(array){
 		this.push.apply(this, array);
 		return this;
