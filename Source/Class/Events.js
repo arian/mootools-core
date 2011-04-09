@@ -32,7 +32,7 @@ var Events = this.Events = new Class({
 		}
 
 		events.set(fn, decorated);
-		if (fn._listen) fn._listen.call(this, type);
+		if (decorated._onListen) decorated._onListen.run(this, [parsedType.type, decorated]);
 
 		return this;
 	}.overloadSetter(),
@@ -45,7 +45,7 @@ var Events = this.Events = new Class({
 			return this;
 		}
 
-		var events = this[uid][type], index;
+		var events = this[uid][type];
 		if (!events) return this;
 
 		if (fn == null){ // ignore every of type
@@ -54,12 +54,16 @@ var Events = this.Events = new Class({
 			}, this);
 		} else { // ignore one
 			type = Events.lookupShortcut(type) || type;
+			var origFn = fn, index;
 
 			if (fn._decoration) this.ignore(fn._decoration, fn._fn);
-			else if ((index = type.indexOf(':')) != -1) this.ignore(type.substr(0, index), events.get(fn).extend('_decoration', null));
+			else if ((index = type.indexOf(':')) != -1) this.ignore(
+				type = type.substr(0, index),
+				fn = events.get(fn).extend('_decoration', null)
+			);
 
-			if (fn._ignore) fn._ignore.call(this, type);
-			events.unset(fn);
+			if (origFn._ignore) origFn._ignore.call(this, type, fn);
+			events.unset(origFn);
 		}
 
 		return this;
@@ -122,16 +126,18 @@ var Events = this.Events = new Class({
 	decorate: function(type, fn){
 		if (typeOf(type) == 'string') type = Events.parseType(type);
 
-		var decorators = type.decorators, stack = fn, decorator;
+		var decorators = type.decorators, stack = fn,
+			onListen = [], onIgnore = [], decorator;
+
 		for (var i = 0, l = decorators.length; i < l; i++){
 			decorator = Events.lookupDecorator(decorators[i].decorator);
 			if (decorator){
-				stack = decorator.listener.call(this, type.type, stack, decorators[i], fn);
-				if (decorator.onListen) fn._listen = decorator.onListen;
-				if (decorator.onIgnore) fn._ignore = decorator.onIgnore;
+				if (decorator.listener) stack = decorator.listener.call(this, type.type, stack, decorators[i], fn);
+				if (decorator.onListen) onListen.push(decorator.onListen);
+				if (decorator.onIgnore) onIgnore.push(decorator.onIgnore);
 			}
 		}
-		return stack;
+		return stack.extend({_onListen: onListen, _onIgnore: onIgnore});
 	}
 
 }).extend(new Accessor('Shortcut'));
