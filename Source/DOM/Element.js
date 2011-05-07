@@ -2,7 +2,7 @@
 ---
 name: DOM.Element
 description: The DOM.Element Class
-provides: DOM.Element
+provides: [DOM.Element, DOM.id, DOM.find, DOM.search, DOM.document, DOM.window]
 requires: [Type, typeOf, Array, String, Function, Number, Object, Accessor, Slick.Parser, Store]
 ...
 */

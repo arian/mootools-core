@@ -33,16 +33,16 @@ if (enumerables) enumerables = ['hasOwnProperty', 'valueOf', 'isPrototypeOf', 'p
 
 Function.prototype.overloadSetter = function(forceObjectArgument){
 	var self = this;
-	return function(a, b){
-		if (a == null) return this;
-		if (forceObjectArgument || typeof a != 'string'){
-			for (var k in a) self.call(this, k, a[k]);
+	return function(argument){
+		if (argument == null) return this;
+		if (forceObjectArgument || typeof argument != 'string'){
+			for (var k in argument) self.call(this, k, argument[k]);
 			if (enumerables) for (var i = enumerables.length; i--;){
 				k = enumerables[i];
-				if (a.hasOwnProperty(k)) self.call(this, k, a[k]);
+				if (argument.hasOwnProperty(k)) self.call(this, k, argument[k]);
 			}
 		} else {
-			self.call(this, a, b);
+			self.apply(this, arguments);
 		}
 		return this;
 	};

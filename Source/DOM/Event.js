@@ -2,7 +2,7 @@
 ---
 name: Event
 description: Contains the Event Class, to make the event object cross-browser.
-requires: [Type, Browser, Array, Function, String, Accessor, $]
+requires: [Type, Browser, Array, Function, String, Accessor, DOM.id]
 provides: Event
 ...
 */
@@ -49,7 +49,7 @@ Event.defineGetters({
 		var event = this.event;
 		return (event.wheelDelta) ? event.wheelDelta / 120 : -(event.detail || 0) / 3;
 	},
-	
+
 	key: function(){
 		var event = this.event;
 
@@ -65,14 +65,14 @@ Event.defineGetters({
 
 		return String.fromCharCode(code).toLowerCase();
 	},
-	
+
 	target: function(){
 		var event = this.event;
 		var target = event.target || event.srcElement;
 		while (target && target.nodeType == 3) target = target.parentNode;
-		return DOM.$(target);
+		return DOM.id(target);
 	},
-	
+
 	relatedTarget: function(){
 		var event = this.event, related = null;
 		switch (event.type){
@@ -84,9 +84,9 @@ Event.defineGetters({
 			return true;
 		};
 		var hasRelated = (Browser.firefox2) ? Function.attempt(test) : test();
-		return (hasRelated) ? DOM.$(related) : null;
+		return (hasRelated) ? DOM.id(related) : null;
 	},
-	
+
 	client: function(){
 		var event = this.event;
 		return {
@@ -94,7 +94,7 @@ Event.defineGetters({
 			y: (event.pageY) ? event.pageY - window.pageYOffset : event.clientY
 		};
 	},
-	
+
 	page: function(){
 		var event = this.event, doc = document;
 		doc = (!doc.compatMode || doc.compatMode == 'CSS1Compat') ? doc.documentElement : doc.body;
@@ -107,7 +107,7 @@ Event.defineGetters({
 });
 
 Event.implement({
-	
+
 	get: function(key){
 		if (this.properties.hasOwnProperty(key = key.camelCase())) return this.properties[key];
 		var getter = Event.lookupGetter(key);
@@ -126,7 +126,7 @@ Event.implement({
 		if (event.preventDefault) event.preventDefault();
 		else event.returnValue = false;
 		return this;
-	}  
+	}
 
 });
 

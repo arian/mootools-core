@@ -75,7 +75,7 @@ Browser.Features.xhr = !!(Browser.Request);
 
 // String methods related to browser stuff.
 
-var head = document.getElementsByTagName('head')[0];
+var head = document.head || document.getElementsByTagName('head')[0];
 
 Browser.exec = function(text){
 	if (!text) return text;
