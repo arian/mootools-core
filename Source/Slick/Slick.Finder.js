@@ -7,7 +7,9 @@ requires: Slick.Parser
 ...
 */
 
-;(function(){
+define(function(require){
+
+require('./Slick.Parser');
 
 var local = {},
 	featuresCache = {},
@@ -980,4 +982,6 @@ Slick.uidOf = function(node){
 
 if (!this.Slick) this.Slick = Slick;
 
-}).apply(/*<CommonJS>*/(typeof exports != 'undefined') ? exports : /*</CommonJS>*/this);
+return this;
+
+});

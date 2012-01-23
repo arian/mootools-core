@@ -12,6 +12,7 @@ describe('AMD', function(){
 				text: 'foo'
 			});
 			expect(el.get('text')).toEqual('foo');
+			expect($$('div').length).toBeGreaterThan(1);
 		},
 
 		'Types/Function': function(module){
