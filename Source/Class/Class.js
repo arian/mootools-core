@@ -14,7 +14,13 @@ provides: Class
 ...
 */
 
-(function(){
+define(function(require){
+
+require('../Core/Core');
+require('../Types/Array');
+require('../Types/String');
+require('../Types/Function');
+require('../Types/Number');
 
 var Class = this.Class = new Type('Class', function(params){
 	if (instanceOf(params, Function)) params = {initialize: params};
@@ -112,4 +118,6 @@ Class.Mutators = {
 	}
 };
 
-})();
+return this;
+
+});

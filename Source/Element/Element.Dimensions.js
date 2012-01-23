@@ -18,7 +18,10 @@ provides: [Element.Dimensions]
 ...
 */
 
-(function(){
+define(function(require){
+
+require('./Element');
+require('./Element.Style');
 
 var element = document.createElement('div'),
 	child = document.createElement('div');
@@ -240,8 +243,6 @@ function getCompatElement(element){
 	return (!doc.compatMode || doc.compatMode == 'CSS1Compat') ? doc.html : doc.body;
 }
 
-})();
-
 //aliases
 Element.alias({position: 'setPosition'}); //compatability
 
@@ -278,5 +279,9 @@ Element.alias({position: 'setPosition'}); //compatability
 	getLeft: function(){
 		return this.getPosition().x;
 	}
+
+});
+
+return this;
 
 });

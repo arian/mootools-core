@@ -14,6 +14,10 @@ provides: Array
 ...
 */
 
+define(function(require){
+
+require('../Core/Core');
+
 Array.implement({
 
 	/*<!ES5>*/
@@ -172,8 +176,12 @@ Array.implement({
 
 Array.alias('extend', 'append');
 
-var $pick = function(){
+this.$pick = function(){
 	return Array.from(arguments).pick();
 };
 
 //</1.2compat>
+
+return this;
+
+});

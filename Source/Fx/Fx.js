@@ -14,7 +14,10 @@ provides: Fx
 ...
 */
 
-(function(){
+define(function(require){
+
+require('../Class/Class');
+require('../Class/Class.Extras');
 
 var Fx = this.Fx = new Class({
 
@@ -180,4 +183,6 @@ var pullInstance = function(fps){
 	}
 };
 
-})();
+return this;
+
+});

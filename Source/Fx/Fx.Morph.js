@@ -14,6 +14,12 @@ provides: Fx.Morph
 ...
 */
 
+define(function(require){
+
+require('../Class/Class');
+require('./Fx');
+require('./Fx.CSS');
+
 Fx.Morph = new Class({
 
 	Extends: Fx.CSS,
@@ -73,5 +79,9 @@ Element.implement({
 		this.get('morph').start(props);
 		return this;
 	}
+
+});
+
+return this;
 
 });

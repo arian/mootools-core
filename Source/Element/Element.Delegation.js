@@ -14,7 +14,10 @@ provides: [Element.Delegation]
 ...
 */
 
-(function(){
+define(function(require){
+
+require('./Element');
+require('./Element.Event');
 
 var eventListenerSupport = !!window.addEventListener;
 
@@ -196,4 +199,6 @@ var delegation = {
 	removeEvent: relay(removeEvent, delegation.removeEvent)
 });
 
-})();
+return this;
+
+});

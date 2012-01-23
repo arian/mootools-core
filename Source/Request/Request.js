@@ -14,7 +14,13 @@ provides: Request
 ...
 */
 
-(function(){
+define(function(require){
+
+require('../Class/Class');
+require('../Class/Class.Extras');
+require('../Types/Object');
+require('../Browser/Browser');
+require('../Element/Element');
 
 var empty = function(){},
 	progressSupport = ('onprogress' in new Browser.Request);
@@ -275,4 +281,6 @@ Element.implement({
 
 });
 
-})();
+return this;
+
+});

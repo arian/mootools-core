@@ -14,7 +14,9 @@ provides: [Class.Extras, Chain, Events, Options]
 ...
 */
 
-(function(){
+define(function(require){
+
+require('./Class');
 
 this.Chain = new Class({
 
@@ -118,4 +120,6 @@ this.Options = new Class({
 
 });
 
-})();
+return this;
+
+});

@@ -14,9 +14,15 @@ provides: [DOMReady, DomReady]
 ...
 */
 
-(function(window, document){
+define(function(require){
 
-var ready,
+require('../Browser/Browser');
+require('../Element/Element');
+require('../Element/Element.Event');
+
+var window = this.window,
+	document = this.document,
+	ready,
 	loaded,
 	checks = [],
 	shouldPoll,
@@ -102,4 +108,6 @@ window.addEvent('load', function(){
 	loaded = true;
 });
 
-})(window, document);
+return this;
+
+});

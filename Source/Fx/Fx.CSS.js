@@ -14,6 +14,13 @@ provides: Fx.CSS
 ...
 */
 
+define(function(require){
+
+require('../Class/Class');
+require('../Class/Class.Extras');
+require('../Element/Element.Style');
+require('./Fx');
+
 Fx.CSS = new Class({
 
 	Extends: Fx,
@@ -147,3 +154,7 @@ Fx.CSS.Parsers = {
 Fx.CSS.Parsers = new Hash(Fx.CSS.Parsers);
 
 //</1.2compat>
+
+return this;
+
+});

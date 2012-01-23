@@ -14,7 +14,9 @@ provides: [Object, Hash]
 ...
 */
 
-(function(){
+define(function(require){
+
+require('../Core/Core');
 
 var hasOwnProperty = Object.prototype.hasOwnProperty;
 
@@ -116,8 +118,6 @@ Object.extend({
 
 });
 
-})();
-
 //<1.2compat>
 
 Hash.implement({
@@ -207,3 +207,7 @@ Hash.extend = Object.append;
 Hash.alias({indexOf: 'keyOf', contains: 'hasValue'});
 
 //</1.2compat>
+
+return this;
+
+});

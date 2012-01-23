@@ -14,6 +14,10 @@ provides: String
 ...
 */
 
+define(function(require){
+
+require('../Core/Core');
+
 String.implement({
 
 	test: function(regex, params){
@@ -78,5 +82,9 @@ String.implement({
 			return (object[name] != null) ? object[name] : '';
 		});
 	}
+
+});
+
+return this;
 
 });

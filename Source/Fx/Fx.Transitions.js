@@ -17,6 +17,10 @@ provides: Fx.Transitions
 ...
 */
 
+define(function(require){
+
+require('./Fx');
+
 Fx.implement({
 
 	getTransition: function(){
@@ -110,4 +114,8 @@ Fx.Transitions.extend({
 	Fx.Transitions[transition] = new Fx.Transition(function(p){
 		return Math.pow(p, i + 2);
 	});
+});
+
+return this;
+
 });

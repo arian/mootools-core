@@ -14,6 +14,10 @@ provides: Function
 ...
 */
 
+define(function(require){
+
+require('../Core/Core');
+
 Function.extend({
 
 	attempt: function(){
@@ -123,6 +127,10 @@ Function.implement({
 
 if (Object.create == Function.prototype.create) Object.create = null;
 
-var $try = Function.attempt;
+this.$try = Function.attempt;
 
 //</1.2compat>
+
+return this;
+
+});

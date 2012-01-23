@@ -17,7 +17,13 @@ provides: Cookie
 ...
 */
 
-var Cookie = new Class({
+define(function(require){
+
+require('../Class/Class');
+require('../Class/Class.Extras');
+require('../Browser/Browser');
+
+var Cookie = this.Cookie = new Class({
 
 	Implements: Options,
 
@@ -72,3 +78,7 @@ Cookie.read = function(key){
 Cookie.dispose = function(key, options){
 	return new Cookie(key, options).dispose();
 };
+
+return this;
+
+});

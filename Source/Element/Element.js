@@ -14,7 +14,22 @@ provides: [Element, Elements, $, $$, Iframe, Selectors]
 ...
 */
 
-var Element = function(tag, props){
+// TODO: I believe there was an issue to wrap `var Element` with a function.
+var Element;
+
+define(function(require){
+
+require('../Browser/Browser');
+require('../Types/Array');
+require('../Types/String');
+require('../Types/Function');
+require('../Types/Object');
+require('../Types/Number');
+require('../Slick/Slick.Parser');
+require('../Slick/Slick.Finder');
+
+
+Element = function(tag, props){
 	var konstructor = Element.Constructors[tag];
 	if (konstructor) return konstructor(props);
 	if (typeof tag != 'string') return document.id(tag).set(props);
@@ -86,7 +101,7 @@ Element.Constructors = new Hash;
 
 //</1.2compat>
 
-var IFrame = new Type('IFrame', function(){
+this.IFrame = new Type('IFrame', function(){
 	var params = Array.link(arguments, {
 		properties: Type.isObject,
 		iframe: function(obj){
@@ -181,8 +196,6 @@ Elements.alias('extend', 'append');
 
 //</1.2compat>
 
-(function(){
-
 // FF, IE
 var splice = Array.prototype.splice, object = {'0': 0, '1': 1, length: 2};
 
@@ -227,10 +240,6 @@ Document.implement({
 	}
 
 });
-
-})();
-
-(function(){
 
 Slick.uidOf(window);
 Slick.uidOf(document);
@@ -1026,4 +1035,6 @@ if (document.createElement('div').getAttributeNode('id')) Element.Properties.id 
 };
 /*</IE>*/
 
-})();
+return this;
+
+});

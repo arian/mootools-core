@@ -14,7 +14,9 @@ provides: Element.Style
 ...
 */
 
-(function(){
+define(function(require){
+
+require('./Element');
 
 var html = document.html;
 
@@ -196,4 +198,6 @@ Element.ShortStyles = {margin: {}, padding: {}, border: {}, borderWidth: {}, bor
 	Short.borderColor[bdc] = Short[bd][bdc] = All[bdc] = 'rgb(@, @, @)';
 });
 
-})();
+return this;
+
+});

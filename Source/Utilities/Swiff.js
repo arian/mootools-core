@@ -17,7 +17,12 @@ provides: Swiff
 ...
 */
 
-(function(){
+define(function(require){
+
+require('../Class/Class');
+require('../Class/Class.Extras');
+require('../Types/Object');
+require('../Element/Element');
 
 var Swiff = this.Swiff = new Class({
 
@@ -110,4 +115,6 @@ Swiff.remote = function(obj, fn){
 	return eval(rs);
 };
 
-})();
+return this;
+
+});

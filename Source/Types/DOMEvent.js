@@ -14,7 +14,13 @@ provides: Event
 ...
 */
 
-(function() {
+define(function(require){
+
+require('../Browser/Browser');
+require('./Array');
+require('./Function');
+require('./String');
+require('./Object');
 
 var _keys = {};
 
@@ -111,10 +117,8 @@ DOMEvent.defineKeys({
 	'46': 'delete', '13': 'enter'
 });
 
-})();
-
 /*<1.3compat>*/
-var Event = DOMEvent;
+var Event = this.Event = DOMEvent;
 Event.Keys = {};
 /*</1.3compat>*/
 
@@ -123,3 +127,7 @@ Event.Keys = {};
 Event.Keys = new Hash(Event.Keys);
 
 /*</1.2compat>*/
+
+return this;
+
+});

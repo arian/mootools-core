@@ -14,7 +14,13 @@ provides: [Browser, Window, Document]
 ...
 */
 
-(function(){
+define(function(require){
+
+require('../Core/Core');
+require('../Types/Array');
+require('../Types/Function');
+require('../Types/Number');
+require('../Types/String');
 
 var document = this.document;
 var window = document.window = this;
@@ -250,4 +256,6 @@ this.$exec = Browser.exec;
 
 //</1.2compat>
 
-})();
+return this;
+
+});

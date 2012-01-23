@@ -14,7 +14,10 @@ provides: Element.Event
 ...
 */
 
-(function(){
+define(function(require){
+
+require('./Element');
+require('../Types/DOMEvent');
 
 Element.Properties.events = {set: function(events){
 	this.addEvents(events);
@@ -187,4 +190,6 @@ Element.Events = new Hash(Element.Events);
 
 //</1.2compat>
 
-})();
+return this;
+
+});

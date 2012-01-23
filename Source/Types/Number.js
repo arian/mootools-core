@@ -14,6 +14,10 @@ provides: Number
 ...
 */
 
+define(function(require){
+
+require('../Core/Core');
+
 Number.implement({
 
 	limit: function(min, max){
@@ -50,3 +54,7 @@ Number.alias('each', 'times');
 	});
 	Number.implement(methods);
 })(['abs', 'acos', 'asin', 'atan', 'atan2', 'ceil', 'cos', 'exp', 'floor', 'log', 'max', 'min', 'pow', 'sin', 'sqrt', 'tan']);
+
+return this;
+
+});

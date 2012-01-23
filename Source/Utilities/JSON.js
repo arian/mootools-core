@@ -16,6 +16,13 @@ provides: JSON
 ...
 */
 
+define(function(require){
+
+require('../Types/Array');
+require('../Types/String');
+require('../Types/Number');
+require('../Types/Function');
+
 if (typeof JSON == 'undefined') this.JSON = {};
 
 //<1.2compat>
@@ -26,8 +33,6 @@ JSON = new Hash({
 });
 
 //</1.2compat>
-
-(function(){
 
 var special = {'\b': '\\b', '\t': '\\t', '\n': '\\n', '\f': '\\f', '\r': '\\r', '"' : '\\"', '\\': '\\\\'};
 
@@ -78,4 +83,6 @@ JSON.decode = function(string, secure){
 	return eval('(' + string + ')');
 };
 
-})();
+return this;
+
+});

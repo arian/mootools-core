@@ -14,6 +14,11 @@ provides: Request.HTML
 ...
 */
 
+define(function(require){
+
+require('../Class/Class');
+require('./Request');
+
 Request.HTML = new Class({
 
 	Extends: Request,
@@ -84,5 +89,9 @@ Element.implement({
 		this.get('load').send(Array.link(arguments, {data: Type.isObject, url: Type.isString}));
 		return this;
 	}
+
+});
+
+return this;
 
 });

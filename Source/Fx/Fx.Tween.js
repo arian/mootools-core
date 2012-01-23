@@ -14,6 +14,12 @@ provides: [Fx.Tween, Element.fade, Element.highlight]
 ...
 */
 
+define(function(require){
+
+require('../Class/Class');
+require('./Fx');
+require('./Fx.CSS');
+
 Fx.Tween = new Class({
 
 	Extends: Fx.CSS,
@@ -107,5 +113,9 @@ Element.implement({
 		}.bind(this));
 		return this;
 	}
+
+});
+
+return this;
 
 });

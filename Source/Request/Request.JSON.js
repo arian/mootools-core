@@ -14,6 +14,12 @@ provides: Request.JSON
 ...
 */
 
+define(function(require){
+
+require('../Class/Class');
+require('./Request');
+require('../Utilities/JSON');
+
 Request.JSON = new Class({
 
 	Extends: Request,
@@ -42,5 +48,9 @@ Request.JSON = new Class({
 		if (json == null) this.onFailure();
 		else this.onSuccess(json, text);
 	}
+
+});
+
+return this;
 
 });

@@ -20,7 +20,13 @@ provides: [Core, MooTools, Type, typeOf, instanceOf, Native]
 ...
 */
 
-(function(){
+if (typeof define != 'function') var define = function(fn){
+	var require = function(){};
+	var exports = window;
+	fn(require, exports);
+};
+
+define(function(){
 
 this.MooTools = {
 	version: '1.5.0dev',
@@ -508,4 +514,6 @@ this.$unlink = function(object){
 
 //</1.2compat>
 
-})();
+return this;
+
+});
