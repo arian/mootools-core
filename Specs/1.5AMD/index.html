@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+
+<!-- Jasmine -->
+
+<link rel="stylesheet" type="text/css" href="../Runner/Jasmine/jasmine.css">
+<link rel="stylesheet" type="text/css" href="../Runner/runner.css">
+
+<script type="text/javascript" src="../Runner/Jasmine/jasmine.js"></script>
+
+<!-- Specs -->
+<script src="../Runner/Helpers/jasmine-html.js"></script>
+<script src="../Runner/Helpers/Syn.js"></script>
+<script src="../Runner/Helpers/JSSpecToJasmine.js"></script>
+<script src="../Runner/Helpers/Loader.js"></script>
+<script src="require.js"></script>
+<script src="AMD-tests.js"></script>
+
+<script>
+
+(function(){
+
+require.config({
+	baseUrl: '../../Source'
+});
+
+window.onload = function(){
+	// Run the specs
+	jasmine.getEnv().addReporter(new jasmine.TrivialReporter());
+	jasmine.getEnv().execute();
+
+};
+
+})();
+</script>
+
+<title>MooTools-AMD Tests</title>
+</head>
+<body>
+	<div id="framework_name">AMD Tests</div>
+</body>
+</html>
