@@ -982,9 +982,9 @@ Slick.uidOf = function(node){
 	return local.getUIDHTML(node);
 };
 
-/*<no-amd>*/
+/*<!amd>*/
 if (typeof define != 'function' && !this.Slick) this.Slick = Slick;
-/*<no-amd>*/
+/*</!amd>*/
 
 return Slick;
 

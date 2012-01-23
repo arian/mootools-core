@@ -1055,9 +1055,11 @@ if (document.createElement('div').getAttributeNode('id')) Element.Properties.id 
 
 
 //<!amd>
-this.Element = Element;
-this.Elements = Elements;
-this.IFrame = exports.IFrame;
+if (!define.amd){
+	this.Element = Element;
+	this.Elements = Elements;
+	this.IFrame = exports.IFrame;
+}
 //</!amd>
 
 return exports;

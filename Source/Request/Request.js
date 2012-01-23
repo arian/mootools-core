@@ -287,7 +287,7 @@ Element.implement({
 });
 
 //<!amd>
-this.Request = Request;
+if (!define.amd) this.Request = Request;
 //</!amd>
 
 return Request;

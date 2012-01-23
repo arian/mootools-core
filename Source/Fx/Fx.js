@@ -189,7 +189,7 @@ var pullInstance = function(fps){
 };
 
 //<!amd>
-this.Fx = Fx;
+if (!define.amd) this.Fx = Fx;
 //</!amd>
 
 return Fx;

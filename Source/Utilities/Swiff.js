@@ -118,6 +118,10 @@ Swiff.remote = function(obj, fn){
 	return eval(rs);
 };
 
+//<!amd>
+if (!define.amd) this.Swiff = Swiff;
+//</!amd>
+
 return Swiff;
 
 });
