@@ -16,27 +16,27 @@ provides: JSON
 ...
 */
 
-define(function(require){
+define(function(require, exports, module){
 
-define.context = 'Utilities/JSON';
+module._id = 'Utilities/JSON';
 
-var Array = require('../Types/Array'),
+var global = require('../Core/Core').global,
+	Array = require('../Types/Array'),
 	String = require('../Types/String'),
 	Number = require('../Types/Number'),
 	Function = require('../Types/Function');
+
 //<1.2compat>
 var Hash = require('../Core/Core').Hash;
 //</1.2compat>
 
-if (typeof JSON == 'undefined') this.JSON = {};
-
-//<1.2compat>
-
-JSON = new Hash({
+exports = module.exports = {
 	stringify: JSON.stringify,
 	parse: JSON.parse
-});
+};
 
+//<1.2compat>
+exports = module.exports = new Hash(JSON);
 //</1.2compat>
 
 var special = {'\b': '\\b', '\t': '\\t', '\n': '\\n', '\f': '\\f', '\r': '\\r', '"' : '\\"', '\\': '\\\\'};
@@ -45,7 +45,7 @@ var escape = function(chr){
 	return special[chr] || '\\u' + ('0000' + chr.charCodeAt(0).toString(16)).slice(-4);
 };
 
-JSON.validate = function(string){
+exports.validate = function(string){
 	string = string.replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g, '@').
 					replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']').
 					replace(/(?:^|:|,)(?:\s*\[)+/g, '');
@@ -53,7 +53,7 @@ JSON.validate = function(string){
 	return (/^[\],:{}\s]*$/).test(string);
 };
 
-JSON.encode = JSON.stringify ? function(obj){
+exports.encode = JSON.stringify ? function(obj){
 	return JSON.stringify(obj);
 } : function(obj){
 	if (obj && obj.toJSON) obj = obj.toJSON();
@@ -62,12 +62,12 @@ JSON.encode = JSON.stringify ? function(obj){
 		case 'string':
 			return '"' + obj.replace(/[\x00-\x1f\\"]/g, escape) + '"';
 		case 'array':
-			return '[' + obj.map(JSON.encode).clean() + ']';
+			return '[' + obj.map(exports.encode).clean() + ']';
 		case 'object': case 'hash':
 			var string = [];
 			Object.each(obj, function(value, key){
-				var json = JSON.encode(value);
-				if (json) string.push(JSON.encode(key) + ':' + json);
+				var json = exports.encode(value);
+				if (json) string.push(exports.encode(key) + ':' + json);
 			});
 			return '{' + string + '}';
 		case 'number': case 'boolean': return '' + obj;
@@ -77,18 +77,22 @@ JSON.encode = JSON.stringify ? function(obj){
 	return null;
 };
 
-JSON.decode = function(string, secure){
+exports.decode = function(string, secure){
 	if (!string || typeOf(string) != 'string') return null;
 
-	if (secure || JSON.secure){
+	if (secure || exports.secure){
 		if (JSON.parse) return JSON.parse(string);
-		if (!JSON.validate(string)) throw new Error('JSON could not decode the input; security is enabled and the value is not secure.');
+		if (!exports.validate(string)) throw new Error('JSON could not decode the input; security is enabled and the value is not secure.');
 	}
 
 	return eval('(' + string + ')');
 };
 
-// TODO should it return an object {encode: fn, decode: fn} or augment the native JSON object?
-return JSON;
+//<!amd>
+if (!define.amd){
+	if (!global.JSON) global.JSON = {};
+	for (var m in exports) global.JSON[m] = exports[m];
+}
+//</!amd>
 
 });

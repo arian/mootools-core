@@ -31,12 +31,13 @@ require = function(name){
 };
 
 define = function(fn){
+	var module = {exports: {}};
 	var require = function(name){
-		name = normalize(name, define.context);
+		name = normalize(name, module._id);
 		return loaded[name];
 	};
-	var exports = {}, result = fn(require, exports);
-	loaded[define.context] = (result == null) ? exports : result;
+	fn.call(module.exports, require, module.exports, module);
+	loaded[module._id] = module.exports;
 };
 
 define.amd = {};
@@ -62,14 +63,18 @@ var normalize = function(name, relative){
 
 })();
 
-define(function(require, exports){
+define(function(require, exports, module){
 
-define.context = 'Core/Core';
+module._id = 'Core/Core';
 
 exports.MooTools = {
 	version: '1.5.0dev',
 	build: '%build%'
 };
+
+if (typeof global == 'undefined') var global = {};
+if (typeof window != 'undefined') global = window;
+exports.global = global;
 
 exports.Function = Function;
 exports.Array = Array;
@@ -559,10 +564,8 @@ exports.$unlink = function(object){
 
 //<!amd>
 if (!define.amd) for (var m in exports){
-	this[m] = exports[m];
+	global[m] = exports[m];
 }
 //</!amd>
-
-return exports;
 
 });

@@ -14,11 +14,12 @@ provides: Array
 ...
 */
 
-define(function(require){
+define(function(require, exports, module){
 
-define.context = 'Types/Array';
+module._id = 'Types/Array';
 
-var Array = require('../Core/Core').Array;
+var global = require('../Core/Core').global,
+	Array = module.exports = require('../Core/Core').Array;
 
 Array.implement({
 
@@ -178,12 +179,10 @@ Array.implement({
 
 Array.alias('extend', 'append');
 
-this.$pick = function(){
+global.$pick = function(){
 	return Array.from(arguments).pick();
 };
 
 //</1.2compat>
-
-return Array;
 
 });

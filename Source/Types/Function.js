@@ -14,11 +14,12 @@ provides: Function
 ...
 */
 
-define(function(require){
+define(function(require, exports, module){
 
-define.context = 'Types/Function';
+module._id = 'Types/Function';
 
-var Function = require('../Core/Core').Function;
+var global = require('../Core/Core').global,
+	Function = module.exports = require('../Core/Core').Function;
 
 Function.extend({
 
@@ -129,10 +130,8 @@ Function.implement({
 
 if (Object.create == Function.prototype.create) Object.create = null;
 
-this.$try = Function.attempt;
+global.$try = Function.attempt;
 
 //</1.2compat>
-
-return Function;
 
 });

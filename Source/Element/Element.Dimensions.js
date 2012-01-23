@@ -18,12 +18,13 @@ provides: [Element.Dimensions]
 ...
 */
 
-define(function(require){
+define(function(require, exports, module){
 
-define.context = 'Element/Element.Dimensions';
+module._id = 'Element/Element.Dimensions';
 
-var Element = require('./Element').Element,
+var Element = module.exports = require('./Element').Element,
 	Window = require('../Browser/Browser').Window;
+
 require('./Element.Style');
 
 var element = document.createElement('div'),
@@ -284,7 +285,5 @@ Element.alias({position: 'setPosition'}); //compatability
 	}
 
 });
-
-return Element;
 
 });

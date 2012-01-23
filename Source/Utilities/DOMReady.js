@@ -14,17 +14,18 @@ provides: [DOMReady, DomReady]
 ...
 */
 
-define(function(require){
+define(function(require, exports, module){
 
-define.context = 'Utilities/DOMReady';
+module._id = 'Utilities/DOMReady';
 
-var Browser = require('../Browser/Browser'),
+var global = require('../Core/Core').global,
+	Browser = require('../Browser/Browser'),
 	Element = require('../Element/Element').Element;
 
 require('../Element/Element.Event');
 
-var window = this.window,
-	document = this.document,
+var window = global.window,
+	document = global.document,
 	ready,
 	loaded,
 	checks = [],
@@ -111,6 +112,8 @@ window.addEvent('load', function(){
 	loaded = true;
 });
 
-return Element;
+module.exports = function(fn){
+	window.addEvent('domready', fn);
+};
 
 });

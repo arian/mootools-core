@@ -14,11 +14,12 @@ provides: Class
 ...
 */
 
-define(function(require, exports){
+define(function(require, exports, module){
 
-define.context = 'Class/Class';
+module._id = 'Class/Class';
 
 var Core = require('../Core/Core'),
+	global = Core.global,
 	typeOf = Core.typeOf,
 	instanceOf = Core.instanceOf,
 	Type = Core.Type,
@@ -27,7 +28,7 @@ var Core = require('../Core/Core'),
 	Function = require('../Types/Function');
 	Number = require('../Types/Number');
 
-var Class = exports.Class = new Type('Class', function(params){
+var Class = module.exports = new Type('Class', function(params){
 	if (instanceOf(params, Function)) params = {initialize: params};
 
 	var newClass = function(){
@@ -124,9 +125,7 @@ Class.Mutators = {
 };
 
 //<!amd>
-if (!define.amd) this.Class = Class;
+if (!define.amd) global.Class = Class;
 //</!amd>
-
-return Class;
 
 });

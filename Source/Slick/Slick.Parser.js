@@ -6,9 +6,9 @@ provides: Slick.Parser
 ...
 */
 
-define(function(){
+define(function(require, exports, module){
 
-define.context = 'Slick/Slick.Parser';
+module._id = 'Slick/Slick.Parser';
 
 var parsed,
 	separatorIndex,
@@ -219,7 +219,10 @@ function parser(
 
 // Slick NS
 
-var Slick = (this.Slick || {});
+if (typeof global == 'undefined') var global = {};
+if (typeof window != 'undefined') global = window;
+
+var Slick = (global.Slick || exports || {});
 
 Slick.parse = function(expression){
 	return parse(expression);
@@ -228,9 +231,7 @@ Slick.parse = function(expression){
 Slick.escapeRegExp = escapeRegExp;
 
 /*<!amd>*/
-if ((typeof define != 'function' || !define.amd) && !this.Slick) this.Slick = Slick;
+if ((typeof define != 'function' || !define.amd) && !global.Slick) global.Slick = Slick;
 /*</!amd>*/
-
-return Slick;
 
 });

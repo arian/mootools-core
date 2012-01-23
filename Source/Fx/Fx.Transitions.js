@@ -17,9 +17,9 @@ provides: Fx.Transitions
 ...
 */
 
-define(function(require){
+define(function(require, exports, module){
 
-define.context = 'Fx/Fx.Transitions';
+module._id = 'Fx/Fx.Transitions';
 
 var Fx = require('./Fx');
 //<1.2compat>
@@ -57,25 +57,23 @@ Fx.Transition = function(transition, params){
 	});
 };
 
-Fx.Transitions = {
-
-	linear: function(zero){
-		return zero;
-	}
-
-};
+Fx.Transitions = exports;
 
 //<1.2compat>
 
-Fx.Transitions = new Hash(Fx.Transitions);
+Fx.Transitions = new Hash(exports);
 
 //</1.2compat>
 
-Fx.Transitions.extend = function(transitions){
+exports.extend = function(transitions){
 	for (var transition in transitions) Fx.Transitions[transition] = new Fx.Transition(transitions[transition]);
 };
 
-Fx.Transitions.extend({
+exports.extend({
+
+	linear: function(zero){
+		return zero;
+	},
 
 	Pow: function(p, x){
 		return Math.pow(p, x && x[0] || 6);
@@ -116,11 +114,9 @@ Fx.Transitions.extend({
 });
 
 ['Quad', 'Cubic', 'Quart', 'Quint'].each(function(transition, i){
-	Fx.Transitions[transition] = new Fx.Transition(function(p){
+	exports[transition] = new Fx.Transition(function(p){
 		return Math.pow(p, i + 2);
 	});
 });
-
-return Fx.Transitions;
 
 });

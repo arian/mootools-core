@@ -14,11 +14,12 @@ provides: [Class.Extras, Chain, Events, Options]
 ...
 */
 
-define(function(require, exports){
+define(function(require, exports, module){
 
-define.context = 'Class/Class.Extras';
+module._id = 'Class/Class.Extras';
 
-var Class = require('./Class'),
+var global = require('../Core/Core').global,
+	Class = require('./Class'),
 	Array = require('../Types/Array'),
 	Object = require('../Core/Core').Object;
 
@@ -125,9 +126,7 @@ exports.Options = new Class({
 });
 
 //<!amd>
-if (!define.amd) for (var m in exports) this[m] = exports[m];
+if (!define.amd) for (var m in exports) global[m] = exports[m];
 //</!amd>
-
-return exports;
 
 });

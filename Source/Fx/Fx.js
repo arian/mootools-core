@@ -14,17 +14,18 @@ provides: Fx
 ...
 */
 
-define(function(require){
+define(function(require, exports, module){
 
-define.context = 'Fx/Fx';
+module._id = 'Fx/Fx';
 
-var Class = require('../Class/Class'),
+var global = require('../Core/Core').global,
+	Class = require('../Class/Class'),
 	Extras = require('../Class/Class.Extras'),
 	Chain = Extras.Chain,
 	Events = Extras.Events,
 	Options = Extras.Options;
 
-var Fx = new Class({
+var Fx = module.exports = new Class({
 
 	Implements: [Chain, Events, Options],
 
@@ -189,9 +190,7 @@ var pullInstance = function(fps){
 };
 
 //<!amd>
-if (!define.amd) this.Fx = Fx;
+if (!define.amd) global.Fx = Fx;
 //</!amd>
-
-return Fx;
 
 });

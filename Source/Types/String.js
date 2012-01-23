@@ -14,11 +14,11 @@ provides: String
 ...
 */
 
-define(function(require){
+define(function(require, exports, module){
 
-define.context = 'Types/String';
+module._id = 'Types/String';
 
-var String = require('../Core/Core').String;
+var String = module.exports = require('../Core/Core').String;
 
 String.implement({
 
@@ -86,7 +86,5 @@ String.implement({
 	}
 
 });
-
-return String;
 
 });

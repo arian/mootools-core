@@ -16,11 +16,12 @@ provides: [Element, Elements, $, $$, Iframe, Selectors]
 
 // TODO: I believe there was an issue to wrap `var Element` with a function.
 
-define(function(require, exports){
+define(function(require, exports, module){
 
-define.context = 'Element/Element';
+module._id = 'Element/Element';
 
 var Core = require('../Core/Core'),
+	global = Core.global,
 	Type = Core.Type,
 	typeOf = Core.typeOf,
 	Browser = require('../Browser/Browser'),
@@ -35,9 +36,9 @@ var Core = require('../Core/Core'),
 
 require('../Slick/Slick.Finder');
 
-//<!amd>
+//<1.2compat>
 var Hash = require('../Core/Core').Hash;
-//</!amd>
+//</1.2compat>
 
 var Element = exports.Element = function(tag, props){
 	var konstructor = Element.Constructors[tag];
@@ -1053,15 +1054,12 @@ if (document.createElement('div').getAttributeNode('id')) Element.Properties.id 
 };
 /*</IE>*/
 
-
 //<!amd>
 if (!define.amd){
-	this.Element = Element;
-	this.Elements = Elements;
-	this.IFrame = exports.IFrame;
+	global.Element = Element;
+	global.Elements = Elements;
+	global.IFrame = exports.IFrame;
 }
 //</!amd>
-
-return exports;
 
 });

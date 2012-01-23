@@ -14,16 +14,16 @@ provides: [Fx.Tween, Element.fade, Element.highlight]
 ...
 */
 
-define(function(require){
+define(function(require, exports, module){
 
-define.context = 'Fx/Fx.Tween';
+module._id = 'Fx/Fx.Tween';
 
 var Class = require('../Class/Class'),
 	Fx = require('./Fx'),
 	CSS = require('./Fx.CSS'),
 	Element = require('../Element/Element').Element;
 
-var Tween = Fx.Tween = new Class({
+var Tween = Fx.Tween = module.exports = new Class({
 
 	Extends: CSS,
 
@@ -118,7 +118,5 @@ Element.implement({
 	}
 
 });
-
-return Tween;
 
 });

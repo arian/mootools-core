@@ -14,15 +14,15 @@ provides: Fx.Morph
 ...
 */
 
-define(function(require){
+define(function(require, exports, module){
 
-define.context = 'Fx/Fx.Morph';
+module._id = 'Fx/Fx.Morph';
 
 var Class = require('../Class/Class'),
 	Fx = require('./Fx'),
 	CSS = require('./Fx.CSS');
 
-var Morph = Fx.Morph = new Class({
+var Morph = Fx.Morph = module.exports = new Class({
 
 	Extends: CSS,
 
@@ -83,7 +83,5 @@ Element.implement({
 	}
 
 });
-
-return Morph;
 
 });

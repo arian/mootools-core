@@ -14,23 +14,26 @@ provides: Event
 ...
 */
 
-define(function(require){
+define(function(require, exports, module){
 
-define.context = 'Types/DOMEvent';
+module._id = 'Types/DOMEvent';
 
-var Type = require('../Core/Core').Type,
+var Core = require('../Core/Core'),
+	global = Core.global,
+	Type = Core.Type,
 	Browser = require('../Browser/Browser'),
 	Array = require('./Array'),
 	Function = require('./Function'),
 	String = require('./String'),
 	Object = require('./Object');
+
 //<1.2compat>
 var Hash = require('../Core/Core').Hash;
 //</1.2compat>
 
 var _keys = {};
 
-var DOMEvent = new Type('DOMEvent', function(event, win){
+var DOMEvent = module.exports = new Type('DOMEvent', function(event, win){
 	if (!win) win = window;
 	event = event || win.event;
 	if (event.$extended) return event;
@@ -132,11 +135,7 @@ DOMEvent.Keys = new Hash(DOMEvent.Keys);
 /*</1.2compat>*/
 
 //<!amd>
-if (!define.amd){
-	this.DOMEvent = /*<1.3compat>*/ this.Event = /*</1.3compat>*/DOMEvent;
-}
+if (!define.amd) global.DOMEvent = /*<1.3compat>*/ global.Event = /*</1.3compat>*/DOMEvent;
 //</!amd>
-
-return DOMEvent;
 
 });

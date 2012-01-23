@@ -14,9 +14,9 @@ provides: Fx.CSS
 ...
 */
 
-define(function(require){
+define(function(require, exports, module){
 
-define.context = 'Fx/Fx.CSS';
+module._id = 'Fx/Fx.CSS';
 
 var Class = require('../Class/Class'),
 	Element = require('../Element/Element.Style'),
@@ -26,7 +26,7 @@ var Class = require('../Class/Class'),
 var Hash = require('../Core/Core').Hash;
 //</1.2compat>
 
-var CSS = Fx.CSS = new Class({
+var CSS = Fx.CSS = module.exports = new Class({
 
 	Extends: Fx,
 
@@ -159,7 +159,5 @@ CSS.Parsers = {
 CSS.Parsers = new Hash(CSS.Parsers);
 
 //</1.2compat>
-
-return CSS;
 
 });

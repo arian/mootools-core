@@ -14,14 +14,14 @@ provides: Request.HTML
 ...
 */
 
-define(function(require){
+define(function(require, exports, module){
 
-define.context = 'Request/Request.HTML';
+module._id = 'Request/Request.HTML';
 
 var Class = require('../Class/Class'),
 	Request = require('./Request');
 
-Request.HTML = new Class({
+Request.HTML = module.exports = new Class({
 
 	Extends: Request,
 
@@ -93,7 +93,5 @@ Element.implement({
 	}
 
 });
-
-return Request.HTML;
 
 });

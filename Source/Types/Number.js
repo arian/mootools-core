@@ -14,11 +14,11 @@ provides: Number
 ...
 */
 
-define(function(require){
+define(function(require, exports, module){
 
-define.context = 'Types/Number';
+module._id = 'Types/Number';
 
-var Number = require('../Core/Core').Number;
+var Number = module.exports = require('../Core/Core').Number;
 
 Number.implement({
 
@@ -56,7 +56,5 @@ Number.alias('each', 'times');
 	});
 	Number.implement(methods);
 })(['abs', 'acos', 'asin', 'atan', 'atan2', 'ceil', 'cos', 'exp', 'floor', 'log', 'max', 'min', 'pow', 'sin', 'sqrt', 'tan']);
-
-return Number;
 
 });

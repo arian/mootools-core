@@ -14,11 +14,11 @@ provides: [Object, Hash]
 ...
 */
 
-define(function(require){
+define(function(require, exports, module){
 
-define.context = 'Types/Object';
+module._id = 'Types/Object';
 
-var Object = require('../Core/Core').Object;
+var Object = module.exports = require('../Core/Core').Object;
 //<1.2compat>
 var Hash = require('../Core/Core').Hash;
 //</1.2compat>
@@ -212,7 +212,5 @@ Hash.extend = Object.append;
 Hash.alias({indexOf: 'keyOf', contains: 'hasValue'});
 
 //</1.2compat>
-
-return Object;
 
 });

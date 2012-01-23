@@ -14,12 +14,12 @@ provides: [Element.Delegation]
 ...
 */
 
-define(function(require){
+define(function(require, exports, module){
 
-define.context = 'Element/Element.Delegation';
+module._id = 'Element/Element.Delegation';
 
 var Array = require('../Types/Array'),
-	Element = require('./Element').Element,
+	Element = module.exports = require('./Element').Element,
 	Browser = require('../Browser/Browser'),
 	Window = Browser.Window,
 	Document = Browser.Document;
@@ -204,7 +204,5 @@ var delegation = {
 	addEvent: relay(addEvent, delegation.addEvent),
 	removeEvent: relay(removeEvent, delegation.removeEvent)
 });
-
-return Element;
 
 });

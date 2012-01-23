@@ -17,16 +17,17 @@ provides: Swiff
 ...
 */
 
-define(function(require){
+define(function(require, exports, module){
 
-define.context = 'Utilities/Swiff';
+module._id = 'Utilities/Swiff';
 
-var Class = require('../Class/Class'),
+var global = require('../Core/Core').global,
+	Class = require('../Class/Class'),
 	Options = require('../Class/Class.Extras').Options,
 	Object = require('../Types/Object'),
 	Element = require('../Element/Element').Element;
 
-var Swiff = new Class({
+var Swiff = module.exports = new Class({
 
 	Implements: Options,
 
@@ -111,7 +112,7 @@ var Swiff = new Class({
 });
 
 // Swiff CallBacks must be global
-this.SwiffCallBacks = {};
+var SwiffCallBacks = global.SwiffCallBacks = {};
 
 Swiff.remote = function(obj, fn){
 	var rs = obj.CallFunction('<invoke name="' + fn + '" returntype="javascript">' + __flash__argumentsToXML(arguments, 2) + '</invoke>');
@@ -119,9 +120,7 @@ Swiff.remote = function(obj, fn){
 };
 
 //<!amd>
-if (!define.amd) this.Swiff = Swiff;
+if (!define.amd) global.Swiff = Swiff;
 //</!amd>
-
-return Swiff;
 
 });

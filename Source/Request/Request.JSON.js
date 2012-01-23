@@ -14,15 +14,15 @@ provides: Request.JSON
 ...
 */
 
-define(function(require){
+define(function(require, exports, module){
 
-define.context = 'Request/Request.JSON';
+module._id = 'Request/Request.JSON';
 
 var Class = require('../Class/Class'),
 	Request = require('./Request'),
 	JSON = require('../Utilities/JSON');
 
-Request.JSON = new Class({
+Request.JSON = module.exports = new Class({
 
 	Extends: Request,
 
@@ -52,7 +52,5 @@ Request.JSON = new Class({
 	}
 
 });
-
-return Request.JSON;
 
 });

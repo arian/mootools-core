@@ -7,9 +7,9 @@ requires: Slick.Parser
 ...
 */
 
-define(function(require){
+define(function(require, exports, module){
 
-define.context = 'Slick/Slick.Finder';
+module._id = 'Slick/Slick.Finder';
 
 var Slick = require('./Slick.Parser');
 
@@ -899,7 +899,7 @@ attributeGetters.MAXLENGTH = attributeGetters.maxLength = attributeGetters.maxle
 
 // Slick
 
-Slick = local.Slick = (Slick || {});
+Slick = local.Slick = (Slick || exports || {});
 
 Slick.version = '1.1.6';
 
@@ -983,9 +983,10 @@ Slick.uidOf = function(node){
 };
 
 /*<!amd>*/
-if (typeof define != 'function' && !this.Slick) this.Slick = Slick;
-/*</!amd>*/
+if (typeof global == 'undefined') var global = {};
+if (typeof window != 'undefined') global = window;
 
-return Slick;
+if ((typeof define != 'function' || !define.amd) && !global.Slick) global.Slick = Slick;
+/*</!amd>*/
 
 });

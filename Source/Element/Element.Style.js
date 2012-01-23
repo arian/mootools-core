@@ -14,11 +14,11 @@ provides: Element.Style
 ...
 */
 
-define(function(require){
+define(function(require, exports, module){
 
-define.context = 'Element/Element.Style';
+module._id = 'Element/Element.Style';
 
-var Element = require('./Element').Element;
+var Element = module.exports = require('./Element').Element;
 //<1.2compat>
 var Hash = require('../Core/Core').Hash;
 //</1.2compat>
@@ -202,7 +202,5 @@ Element.ShortStyles = {margin: {}, padding: {}, border: {}, borderWidth: {}, bor
 	Short.borderStyle[bds] = Short[bd][bds] = All[bds] = '@';
 	Short.borderColor[bdc] = Short[bd][bdc] = All[bdc] = 'rgb(@, @, @)';
 });
-
-return Element;
 
 });

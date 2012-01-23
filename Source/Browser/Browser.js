@@ -14,28 +14,28 @@ provides: [Browser, Window, Document]
 ...
 */
 
-define(function(require){
+define(function(require, exports, module){
 
-define.context = 'Browser/Browser';
+module._id = 'Browser/Browser';
 
 var Core = require('../Core/Core'),
+	global = Core.global,
 	typeOf = Core.typeOf,
 	Type = Core.Type,
 	Array = require('../Types/Array'),
 	Function = require('../Types/Function'),
 	Number = require('../Types/Number'),
-	String = require('../Types/String'),
-	global = {};
+	String = require('../Types/String');
 
-var document = this.document;
-var window = document.window = this;
+var document = global.document;
+var window = document.window = global;
 
 var ua = navigator.userAgent.toLowerCase(),
 	platform = navigator.platform.toLowerCase(),
 	UA = ua.match(/(opera|ie|firefox|chrome|version)[\s\/:]([\w\d\.]+)?.*?(safari|version[\s\/:]([\w\d\.]+)|$)/) || [null, 'unknown', 0],
 	mode = UA[1] == 'ie' && document.documentMode;
 
-var Browser = global.Browser = {
+var Browser = module.exports = {
 
 	extend: Function.prototype.extend,
 
@@ -138,13 +138,13 @@ Browser.String = String;
 // Window, Document
 
 Browser.extend({
-	Document: this.Document,
-	Window: this.Window,
-	Element: this.Element,
-	Event: this.Event
+	Document: global.Document,
+	Window: global.Window,
+	Element: global.Element,
+	Event: global.Event
 });
 
-var Window = global.Window = Browser.Window = global.$constructor = new Type('Window', function(){});
+var Window = exports.Window = Browser.Window = window.$constructor = new Type('Window', function(){});
 
 window.$family = Function.from('window').hide();
 
@@ -152,7 +152,7 @@ Window.mirror(function(name, method){
 	window[name] = method;
 });
 
-var Document = global.Document = Browser.Document = document.$constructor = new Type('Document', function(){});
+var Document = exports.Document = Browser.Document = document.$constructor = new Type('Document', function(){});
 
 document.$family = Function.from('document').hide();
 
@@ -168,12 +168,12 @@ if (document.execCommand) try {
 } catch (e){}
 
 /*<ltIE9>*/
-if (this.attachEvent && !this.addEventListener){
+if (window.attachEvent && !window.addEventListener){
 	var unloadEvent = function(){
-		this.detachEvent('onunload', unloadEvent);
+		window.detachEvent('onunload', unloadEvent);
 		document.head = document.html = document.window = null;
 	};
-	this.attachEvent('onunload', unloadEvent);
+	window.attachEvent('onunload', unloadEvent);
 }
 
 // IE fails on collections and <select>.options (refers to <select>)
@@ -259,14 +259,12 @@ if (Browser.name == 'unknown'){
 	}
 }
 
-global.$exec = Browser.exec;
+exports.$exec = Browser.exec;
 
 //</1.2compat>
 
 //<!amd>
-if (!define.amd) for (var m in global) this[m] = global[m];
+if (!define.amd) for (var m in exports) global[m] = exports[m];
 //</!amd>
-
-return Browser;
 
 });

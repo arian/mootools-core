@@ -17,15 +17,16 @@ provides: Cookie
 ...
 */
 
-define(function(require){
+define(function(require, exports, module){
 
-define.context = 'Utilities/Cookie';
+module._id = 'Utilities/Cookie';
 
-var Class = require('../Class/Class'),
+var global = require('../Core/Core').global,
+	Class = require('../Class/Class'),
 	Options = require('../Class/Class.Extras').Options,
 	Browser = require('../Browser/Browser');
 
-var Cookie = new Class({
+var Cookie = module.exports = new Class({
 
 	Implements: Options,
 
@@ -82,9 +83,7 @@ Cookie.dispose = function(key, options){
 };
 
 //<!amd>
-if (!define.amd) this.Cookie = Cookie;
+if (!define.amd) global.Cookie = Cookie;
 //</!amd>
-
-return Cookie;
 
 });

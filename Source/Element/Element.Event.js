@@ -14,12 +14,12 @@ provides: Element.Event
 ...
 */
 
-define(function(require){
+define(function(require, exports, module){
 
-define.context = 'Element/Element.Event';
+module._id = 'Element/Element.Event';
 
 var Array = require('../Types/Array'),
-	Element = require('./Element').Element,
+	Element = module.exports = require('./Element').Element,
 	Browser = require('../Browser/Browser'),
 	Window = Browser.Window,
 	Document = Browser.Document,
@@ -198,7 +198,5 @@ if (!window.addEventListener){
 Element.Events = new Hash(Element.Events);
 
 //</1.2compat>
-
-return Element;
 
 });
