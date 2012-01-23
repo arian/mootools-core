@@ -14,15 +14,20 @@ provides: Class
 ...
 */
 
-define(function(require){
+define(function(require, exports){
 
-require('../Core/Core');
-require('../Types/Array');
-require('../Types/String');
-require('../Types/Function');
-require('../Types/Number');
+define.context = 'Class/Class';
 
-var Class = this.Class = new Type('Class', function(params){
+var Core = require('../Core/Core'),
+	typeOf = Core.typeOf,
+	instanceOf = Core.instanceOf,
+	Type = Core.Type,
+	Array = require('../Types/Array');
+	String = require('../Types/String');
+	Function = require('../Types/Function');
+	Number = require('../Types/Number');
+
+var Class = exports.Class = new Type('Class', function(params){
 	if (instanceOf(params, Function)) params = {initialize: params};
 
 	var newClass = function(){
@@ -118,6 +123,10 @@ Class.Mutators = {
 	}
 };
 
-return this;
+//<!amd>
+if (!define.amd) this.Class = Class;
+//</!amd>
+
+return Class;
 
 });

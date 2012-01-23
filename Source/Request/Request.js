@@ -16,16 +16,21 @@ provides: Request
 
 define(function(require){
 
-require('../Class/Class');
-require('../Class/Class.Extras');
-require('../Types/Object');
-require('../Browser/Browser');
-require('../Element/Element');
+define.context = 'Request/Request';
+
+var Class = require('../Class/Class'),
+	Extras = require('../Class/Class.Extras'),
+	Chain = Extras.Chain,
+	Events = Extras.Events,
+	Options = Extras.Options,
+	Object = require('../Types/Object');
+	Browser = require('../Browser/Browser');
+	Element = require('../Element/Element').Element;
 
 var empty = function(){},
 	progressSupport = ('onprogress' in new Browser.Request);
 
-var Request = this.Request = new Class({
+var Request = new Class({
 
 	Implements: [Chain, Events, Options],
 
@@ -281,6 +286,10 @@ Element.implement({
 
 });
 
-return this;
+//<!amd>
+this.Request = Request;
+//</!amd>
+
+return Request;
 
 });

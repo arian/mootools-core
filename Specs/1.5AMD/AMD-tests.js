@@ -1,52 +1,61 @@
 
 describe('AMD', function(){
 
+	// Currently some random tests to check whether the correct objects are required.
+
 	var tests = {
 
-		'Core/Core': function(module){
-			expect(typeof module.typeOf).toEqual('function');
+		'Core/Core': function(Core){
+			expect(typeof Core.typeOf).toEqual('function');
+			expect(typeof typeOf).toEqual('undefined');
+			expect(typeof instanceOf).toEqual('undefined');
+			expect(typeof Type).toEqual('undefined');
 		},
 
-		'Element/Element': function(module){
-			var el = new Element('div', {
+		'Element/Element': function(Element){
+			var el = new Element.Element('div', {
 				text: 'foo'
 			});
 			expect(el.get('text')).toEqual('foo');
-			expect($$('div').length).toBeGreaterThan(1);
+			expect(Element.$$('div').length).toBeGreaterThan(1);
+			expect(typeof IFrame).toEqual('undefined');
 		},
 
-		'Types/Function': function(module){
+		'Types/Function': function(Function){
 			expect(typeof Function.attempt).toEqual('function');
 		},
 
-		'Types/Object': function(module){
+		'Types/Object': function(Object){
 			expect(typeof Object.attempt).toEqual('function');
 		},
 
-		'Class/Class': function(module){
-			expect(typeof module.Class).not.toEqual('undefined');
+		'Class/Class': function(Class){
+			expect(typeof Class).not.toEqual('undefined');
+			expect(typeof window.Class).toEqual('undefined');
 		},
 
-		'Class/Class.Extras': function(module){
-			expect(typeof module.Events).not.toEqual('undefined');
-			expect(typeof module.Chain).not.toEqual('undefined');
-			expect(typeof module.Options).not.toEqual('undefined');
+		'Class/Class.Extras': function(Extras){
+			expect(typeof Extras.Events).not.toEqual('undefined');
+			expect(typeof Extras.Chain).not.toEqual('undefined');
+			expect(typeof Extras.Options).not.toEqual('undefined');
+			expect(typeof Events).toEqual('undefined');
+			expect(typeof Chain).toEqual('undefined');
+			expect(typeof Options).toEqual('undefined');
 		},
 		
-		'Browser/Browser': function(module){
-			expect(typeof module.Browser).not.toEqual('undefined');
+		'Browser/Browser': function(Browser){
+			expect(typeof Browser.name).not.toEqual('undefined');
+			expect(typeof window.Browser).toEqual('undefined');
 		},
 
-		'Fx/Fx.Tween': function(module){
-			expect(typeof module.Fx).not.toEqual('undefined');
-			expect(typeof module.Fx.CSS).not.toEqual('undefined');
-			expect(typeof module.Fx.Tween).not.toEqual('undefined');
+		'Fx/Fx.Tween': function(Tween){
+			expect(typeof Tween).not.toEqual('undefined');
+			expect(typeof Fx).toEqual('undefined');
 		},
 
-		'Request/Request.JSON': function(module){
-			expect(typeof module.JSON.encode).not.toEqual('undefined');
-			expect(typeof module.Request).not.toEqual('undefined');
-			expect(typeof module.Request.JSON).not.toEqual('undefined');
+		'Request/Request.JSON': function(RequestJSON){
+			expect(typeof RequestJSON).not.toEqual('undefined');
+			expect(typeof Request).toEqual('undefined');
 		}
 
 	};

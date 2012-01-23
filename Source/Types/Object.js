@@ -16,7 +16,12 @@ provides: [Object, Hash]
 
 define(function(require){
 
-require('../Core/Core');
+define.context = 'Types/Object';
+
+var Object = require('../Core/Core').Object;
+//<1.2compat>
+var Hash = require('../Core/Core').Hash;
+//</1.2compat>
 
 var hasOwnProperty = Object.prototype.hasOwnProperty;
 
@@ -208,6 +213,6 @@ Hash.alias({indexOf: 'keyOf', contains: 'hasValue'});
 
 //</1.2compat>
 
-return this;
+return Object;
 
 });

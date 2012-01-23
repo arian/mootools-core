@@ -23,7 +23,8 @@
 (function(){
 
 require.config({
-	baseUrl: '../../Source'
+	baseUrl: '../../Source',
+	urlArgs: "bust=" +  (+new Date())
 });
 
 window.onload = function(){

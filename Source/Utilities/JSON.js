@@ -18,10 +18,15 @@ provides: JSON
 
 define(function(require){
 
-require('../Types/Array');
-require('../Types/String');
-require('../Types/Number');
-require('../Types/Function');
+define.context = 'Utilities/JSON';
+
+var Array = require('../Types/Array'),
+	String = require('../Types/String'),
+	Number = require('../Types/Number'),
+	Function = require('../Types/Function');
+//<1.2compat>
+var Hash = require('../Core/Core').Hash;
+//</1.2compat>
 
 if (typeof JSON == 'undefined') this.JSON = {};
 
@@ -83,6 +88,7 @@ JSON.decode = function(string, secure){
 	return eval('(' + string + ')');
 };
 
-return this;
+// TODO should it return an object {encode: fn, decode: fn} or augment the native JSON object?
+return JSON;
 
 });

@@ -16,10 +16,15 @@ provides: Fx
 
 define(function(require){
 
-require('../Class/Class');
-require('../Class/Class.Extras');
+define.context = 'Fx/Fx';
 
-var Fx = this.Fx = new Class({
+var Class = require('../Class/Class'),
+	Extras = require('../Class/Class.Extras'),
+	Chain = Extras.Chain,
+	Events = Extras.Events,
+	Options = Extras.Options;
+
+var Fx = new Class({
 
 	Implements: [Chain, Events, Options],
 
@@ -183,6 +188,10 @@ var pullInstance = function(fps){
 	}
 };
 
-return this;
+//<!amd>
+this.Fx = Fx;
+//</!amd>
+
+return Fx;
 
 });

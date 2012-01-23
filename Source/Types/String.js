@@ -16,7 +16,9 @@ provides: String
 
 define(function(require){
 
-require('../Core/Core');
+define.context = 'Types/String';
+
+var String = require('../Core/Core').String;
 
 String.implement({
 
@@ -85,6 +87,6 @@ String.implement({
 
 });
 
-return this;
+return String;
 
 });

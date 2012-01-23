@@ -8,6 +8,8 @@ provides: Slick.Parser
 
 define(function(){
 
+define.context = 'Slick/Slick.Parser';
+
 var parsed,
 	separatorIndex,
 	combinatorIndex,
@@ -225,8 +227,10 @@ Slick.parse = function(expression){
 
 Slick.escapeRegExp = escapeRegExp;
 
-if (!this.Slick) this.Slick = Slick;
+/*<no-amd>*/
+if ((typeof define != 'function' || !define.amd) && !this.Slick) this.Slick = Slick;
+/*<no-amd>*/
 
-return this;
+return Slick;
 
 });

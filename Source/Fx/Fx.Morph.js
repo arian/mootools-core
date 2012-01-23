@@ -16,13 +16,15 @@ provides: Fx.Morph
 
 define(function(require){
 
-require('../Class/Class');
-require('./Fx');
-require('./Fx.CSS');
+define.context = 'Fx/Fx.Morph';
 
-Fx.Morph = new Class({
+var Class = require('../Class/Class'),
+	Fx = require('./Fx'),
+	CSS = require('./Fx.CSS');
 
-	Extends: Fx.CSS,
+var Morph = Fx.Morph = new Class({
+
+	Extends: CSS,
 
 	initialize: function(element, options){
 		this.element = this.subject = document.id(element);
@@ -65,7 +67,7 @@ Element.Properties.morph = {
 	get: function(){
 		var morph = this.retrieve('morph');
 		if (!morph){
-			morph = new Fx.Morph(this, {link: 'cancel'});
+			morph = new Morph(this, {link: 'cancel'});
 			this.store('morph', morph);
 		}
 		return morph;
@@ -82,6 +84,6 @@ Element.implement({
 
 });
 
-return this;
+return Morph;
 
 });

@@ -16,8 +16,17 @@ provides: Element.Event
 
 define(function(require){
 
-require('./Element');
-require('../Types/DOMEvent');
+define.context = 'Element/Element.Event';
+
+var Array = require('../Types/Array'),
+	Element = require('./Element').Element,
+	Browser = require('../Browser/Browser'),
+	Window = Browser.Window,
+	Document = Browser.Document,
+	DOMEvent = require('../Types/DOMEvent');
+//<1.2compat>
+var Hash = require('../Core/Core').Hash;
+//</1.2compat>
 
 Element.Properties.events = {set: function(events){
 	this.addEvents(events);
@@ -190,6 +199,6 @@ Element.Events = new Hash(Element.Events);
 
 //</1.2compat>
 
-return this;
+return Element;
 
 });

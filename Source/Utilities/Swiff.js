@@ -19,12 +19,14 @@ provides: Swiff
 
 define(function(require){
 
-require('../Class/Class');
-require('../Class/Class.Extras');
-require('../Types/Object');
-require('../Element/Element');
+define.context = 'Utilities/Swiff';
 
-var Swiff = this.Swiff = new Class({
+var Class = require('../Class/Class'),
+	Options = require('../Class/Class.Extras').Options,
+	Object = require('../Types/Object'),
+	Element = require('../Element/Element').Element;
+
+var Swiff = new Class({
 
 	Implements: Options,
 
@@ -56,7 +58,7 @@ var Swiff = this.Swiff = new Class({
 		var id = this.id = options.id || this.instance;
 		var container = document.id(options.container);
 
-		Swiff.CallBacks[this.instance] = {};
+		SwiffCallBacks[this.instance] = {};
 
 		var params = options.params, vars = options.vars, callBacks = options.callBacks;
 		var properties = Object.append({height: options.height, width: options.width}, options.properties);
@@ -64,12 +66,12 @@ var Swiff = this.Swiff = new Class({
 		var self = this;
 
 		for (var callBack in callBacks){
-			Swiff.CallBacks[this.instance][callBack] = (function(option){
+			SwiffCallBacks[this.instance][callBack] = (function(option){
 				return function(){
 					return option.apply(self.object, arguments);
 				};
 			})(callBacks[callBack]);
-			vars[callBack] = 'Swiff.CallBacks.' + this.instance + '.' + callBack;
+			vars[callBack] = 'SwiffCallBacks.' + this.instance + '.' + callBack;
 		}
 
 		params.flashVars = Object.toQueryString(vars);
@@ -108,13 +110,14 @@ var Swiff = this.Swiff = new Class({
 
 });
 
-Swiff.CallBacks = {};
+// Swiff CallBacks must be global
+this.SwiffCallBacks = {};
 
 Swiff.remote = function(obj, fn){
 	var rs = obj.CallFunction('<invoke name="' + fn + '" returntype="javascript">' + __flash__argumentsToXML(arguments, 2) + '</invoke>');
 	return eval(rs);
 };
 
-return this;
+return Swiff;
 
 });

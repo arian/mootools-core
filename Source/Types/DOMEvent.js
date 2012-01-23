@@ -16,15 +16,21 @@ provides: Event
 
 define(function(require){
 
-require('../Browser/Browser');
-require('./Array');
-require('./Function');
-require('./String');
-require('./Object');
+define.context = 'Types/DOMEvent';
+
+var Type = require('../Core/Core').Type,
+	Browser = require('../Browser/Browser'),
+	Array = require('./Array'),
+	Function = require('./Function'),
+	String = require('./String'),
+	Object = require('./Object');
+//<1.2compat>
+var Hash = require('../Core/Core').Hash;
+//</1.2compat>
 
 var _keys = {};
 
-var DOMEvent = this.DOMEvent = new Type('DOMEvent', function(event, win){
+var DOMEvent = new Type('DOMEvent', function(event, win){
 	if (!win) win = window;
 	event = event || win.event;
 	if (event.$extended) return event;
@@ -118,16 +124,19 @@ DOMEvent.defineKeys({
 });
 
 /*<1.3compat>*/
-var Event = this.Event = DOMEvent;
-Event.Keys = {};
+DOMEvent.Keys = {};
 /*</1.3compat>*/
 
 /*<1.2compat>*/
-
-Event.Keys = new Hash(Event.Keys);
-
+DOMEvent.Keys = new Hash(DOMEvent.Keys);
 /*</1.2compat>*/
 
-return this;
+//<!amd>
+if (!define.amd){
+	this.DOMEvent = /*<1.3compat>*/ this.Event = /*</1.3compat>*/DOMEvent;
+}
+//</!amd>
+
+return DOMEvent;
 
 });

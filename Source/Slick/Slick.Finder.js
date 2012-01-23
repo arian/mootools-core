@@ -9,7 +9,9 @@ requires: Slick.Parser
 
 define(function(require){
 
-require('./Slick.Parser');
+define.context = 'Slick/Slick.Finder';
+
+var Slick = require('./Slick.Parser');
 
 var local = {},
 	featuresCache = {},
@@ -897,7 +899,7 @@ attributeGetters.MAXLENGTH = attributeGetters.maxLength = attributeGetters.maxle
 
 // Slick
 
-var Slick = local.Slick = (this.Slick || {});
+Slick = local.Slick = (Slick || {});
 
 Slick.version = '1.1.6';
 
@@ -980,8 +982,10 @@ Slick.uidOf = function(node){
 	return local.getUIDHTML(node);
 };
 
-if (!this.Slick) this.Slick = Slick;
+/*<no-amd>*/
+if (typeof define != 'function' && !this.Slick) this.Slick = Slick;
+/*<no-amd>*/
 
-return this;
+return Slick;
 
 });

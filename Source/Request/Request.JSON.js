@@ -16,9 +16,11 @@ provides: Request.JSON
 
 define(function(require){
 
-require('../Class/Class');
-require('./Request');
-require('../Utilities/JSON');
+define.context = 'Request/Request.JSON';
+
+var Class = require('../Class/Class'),
+	Request = require('./Request'),
+	JSON = require('../Utilities/JSON');
 
 Request.JSON = new Class({
 
@@ -51,6 +53,6 @@ Request.JSON = new Class({
 
 });
 
-return this;
+return Request.JSON;
 
 });

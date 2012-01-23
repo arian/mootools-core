@@ -16,11 +16,16 @@ provides: [Browser, Window, Document]
 
 define(function(require){
 
-require('../Core/Core');
-require('../Types/Array');
-require('../Types/Function');
-require('../Types/Number');
-require('../Types/String');
+define.context = 'Browser/Browser';
+
+var Core = require('../Core/Core'),
+	typeOf = Core.typeOf,
+	Type = Core.Type,
+	Array = require('../Types/Array'),
+	Function = require('../Types/Function'),
+	Number = require('../Types/Number'),
+	String = require('../Types/String'),
+	global = {};
 
 var document = this.document;
 var window = document.window = this;
@@ -30,7 +35,7 @@ var ua = navigator.userAgent.toLowerCase(),
 	UA = ua.match(/(opera|ie|firefox|chrome|version)[\s\/:]([\w\d\.]+)?.*?(safari|version[\s\/:]([\w\d\.]+)|$)/) || [null, 'unknown', 0],
 	mode = UA[1] == 'ie' && document.documentMode;
 
-var Browser = this.Browser = {
+var Browser = global.Browser = {
 
 	extend: Function.prototype.extend,
 
@@ -128,6 +133,8 @@ String.implement('stripScripts', function(exec){
 	return text;
 });
 
+Browser.String = String;
+
 // Window, Document
 
 Browser.extend({
@@ -137,15 +144,15 @@ Browser.extend({
 	Event: this.Event
 });
 
-this.Window = this.$constructor = new Type('Window', function(){});
+var Window = global.Window = Browser.Window = global.$constructor = new Type('Window', function(){});
 
-this.$family = Function.from('window').hide();
+window.$family = Function.from('window').hide();
 
 Window.mirror(function(name, method){
 	window[name] = method;
 });
 
-this.Document = document.$constructor = new Type('Document', function(){});
+var Document = global.Document = Browser.Document = document.$constructor = new Type('Document', function(){});
 
 document.$family = Function.from('document').hide();
 
@@ -252,10 +259,14 @@ if (Browser.name == 'unknown'){
 	}
 }
 
-this.$exec = Browser.exec;
+global.$exec = Browser.exec;
 
 //</1.2compat>
 
-return this;
+//<!amd>
+if (!define.amd) for (var m in global) this[m] = global[m];
+//</!amd>
+
+return Browser;
 
 });

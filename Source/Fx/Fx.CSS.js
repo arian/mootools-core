@@ -16,12 +16,17 @@ provides: Fx.CSS
 
 define(function(require){
 
-require('../Class/Class');
-require('../Class/Class.Extras');
-require('../Element/Element.Style');
-require('./Fx');
+define.context = 'Fx/Fx.CSS';
 
-Fx.CSS = new Class({
+var Class = require('../Class/Class'),
+	Element = require('../Element/Element.Style'),
+	Fx = require('./Fx'),
+	Array = require('../Core/Core').Array;
+//<1.2compat>
+var Hash = require('../Core/Core').Hash;
+//</1.2compat>
+
+var CSS = Fx.CSS = new Class({
 
 	Extends: Fx,
 
@@ -45,7 +50,7 @@ Fx.CSS = new Class({
 		return value.map(function(val){
 			val = String(val);
 			var found = false;
-			Object.each(Fx.CSS.Parsers, function(parser, key){
+			Object.each(CSS.Parsers, function(parser, key){
 				if (found) return;
 				var parsed = parser.parse(val);
 				if (parsed || parsed === 0) found = {value: parsed, parser: parser};
@@ -86,7 +91,7 @@ Fx.CSS = new Class({
 	//searches inside the page css to find the values for a selector
 
 	search: function(selector){
-		if (Fx.CSS.Cache[selector]) return Fx.CSS.Cache[selector];
+		if (CSS.Cache[selector]) return CSS.Cache[selector];
 		var to = {}, selectorTest = new RegExp('^' + selector.escapeRegExp() + '$');
 		Array.each(document.styleSheets, function(sheet, j){
 			var href = sheet.href;
@@ -110,9 +115,9 @@ Fx.CSS = new Class({
 
 });
 
-Fx.CSS.Cache = {};
+CSS.Cache = {};
 
-Fx.CSS.Parsers = {
+CSS.Parsers = {
 
 	Color: {
 		parse: function(value){
@@ -151,10 +156,10 @@ Fx.CSS.Parsers = {
 
 //<1.2compat>
 
-Fx.CSS.Parsers = new Hash(Fx.CSS.Parsers);
+CSS.Parsers = new Hash(CSS.Parsers);
 
 //</1.2compat>
 
-return this;
+return CSS;
 
 });

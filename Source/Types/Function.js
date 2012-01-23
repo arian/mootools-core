@@ -16,7 +16,9 @@ provides: Function
 
 define(function(require){
 
-require('../Core/Core');
+define.context = 'Types/Function';
+
+var Function = require('../Core/Core').Function;
 
 Function.extend({
 
@@ -131,6 +133,6 @@ this.$try = Function.attempt;
 
 //</1.2compat>
 
-return this;
+return Function;
 
 });

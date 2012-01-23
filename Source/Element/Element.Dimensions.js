@@ -20,7 +20,10 @@ provides: [Element.Dimensions]
 
 define(function(require){
 
-require('./Element');
+define.context = 'Element/Element.Dimensions';
+
+var Element = require('./Element').Element,
+	Window = require('../Browser/Browser').Window;
 require('./Element.Style');
 
 var element = document.createElement('div'),
@@ -282,6 +285,6 @@ Element.alias({position: 'setPosition'}); //compatability
 
 });
 
-return this;
+return Element;
 
 });

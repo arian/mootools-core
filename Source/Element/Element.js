@@ -15,21 +15,31 @@ provides: [Element, Elements, $, $$, Iframe, Selectors]
 */
 
 // TODO: I believe there was an issue to wrap `var Element` with a function.
-var Element;
 
-define(function(require){
+define(function(require, exports){
 
-require('../Browser/Browser');
-require('../Types/Array');
-require('../Types/String');
-require('../Types/Function');
-require('../Types/Object');
-require('../Types/Number');
-require('../Slick/Slick.Parser');
+define.context = 'Element/Element';
+
+var Core = require('../Core/Core'),
+	Type = Core.Type,
+	typeOf = Core.typeOf,
+	Browser = require('../Browser/Browser'),
+	Document = Browser.Document,
+	Window = Browser.Window,
+	Array = require('../Types/Array'),
+	String = require('../Types/String'),
+	Function = require('../Types/Function'),
+	Object = require('../Types/Object'),
+	Number = require('../Types/Number'),
+	Slick = require('../Slick/Slick.Parser');
+
 require('../Slick/Slick.Finder');
 
+//<!amd>
+var Hash = require('../Core/Core').Hash;
+//</!amd>
 
-Element = function(tag, props){
+var Element = exports.Element = function(tag, props){
 	var konstructor = Element.Constructors[tag];
 	if (konstructor) return konstructor(props);
 	if (typeof tag != 'string') return document.id(tag).set(props);
@@ -101,7 +111,7 @@ Element.Constructors = new Hash;
 
 //</1.2compat>
 
-this.IFrame = new Type('IFrame', function(){
+exports.IFrame = new Type('IFrame', function(){
 	var params = Array.link(arguments, {
 		properties: Type.isObject,
 		iframe: function(obj){
@@ -125,7 +135,7 @@ this.IFrame = new Type('IFrame', function(){
 	return iframe;
 });
 
-var Elements = this.Elements = function(nodes){
+var Elements = exports.Elements = function(nodes){
 	if (nodes && nodes.length){
 		var uniques = {}, node;
 		for (var i = 0; node = nodes[i++];){
@@ -301,9 +311,13 @@ Document.implement({
 
 });
 
-if (window.$ == null) Window.implement('$', function(el, nc){
+var $ = function(el, nc){
 	return document.id(el, nc, this.document);
-});
+};
+
+if (window.$ == null) Window.implement('$', $);
+
+exports.$ = $.bind(window);
 
 Window.implement({
 
@@ -446,7 +460,7 @@ if (window.$$ == null) Window.implement('$$', function(selector){
 	for (var i = 0, l = args.length; i < l; i++){
 		var item = args[i];
 		switch (typeOf(item)){
-			case 'element': elements.push(item); break;
+			case 'element': elements.push(item);break;
 			case 'string': Slick.search(this.document, item, elements);
 		}
 	}
@@ -455,13 +469,17 @@ if (window.$$ == null) Window.implement('$$', function(selector){
 
 //</1.2compat>
 
-if (window.$$ == null) Window.implement('$$', function(selector){
+var $$ = function(selector){
 	if (arguments.length == 1){
 		if (typeof selector == 'string') return Slick.search(this.document, selector, new Elements);
 		else if (Type.isEnumerable(selector)) return new Elements(selector);
 	}
 	return new Elements(arguments);
-});
+};
+
+if (window.$$ == null) Window.implement('$$', $$);
+
+exports.$$ = $$.bind(window);
 
 // Inserters
 
@@ -1035,6 +1053,13 @@ if (document.createElement('div').getAttributeNode('id')) Element.Properties.id 
 };
 /*</IE>*/
 
-return this;
+
+//<!amd>
+this.Element = Element;
+this.Elements = Elements;
+this.IFrame = exports.IFrame;
+//</!amd>
+
+return exports;
 
 });

@@ -16,8 +16,10 @@ provides: Request.HTML
 
 define(function(require){
 
-require('../Class/Class');
-require('./Request');
+define.context = 'Request/Request.HTML';
+
+var Class = require('../Class/Class'),
+	Request = require('./Request');
 
 Request.HTML = new Class({
 
@@ -92,6 +94,6 @@ Element.implement({
 
 });
 
-return this;
+return Request.HTML;
 
 });

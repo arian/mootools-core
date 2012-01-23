@@ -16,13 +16,16 @@ provides: [Fx.Tween, Element.fade, Element.highlight]
 
 define(function(require){
 
-require('../Class/Class');
-require('./Fx');
-require('./Fx.CSS');
+define.context = 'Fx/Fx.Tween';
 
-Fx.Tween = new Class({
+var Class = require('../Class/Class'),
+	Fx = require('./Fx'),
+	CSS = require('./Fx.CSS'),
+	Element = require('../Element/Element').Element;
 
-	Extends: Fx.CSS,
+var Tween = Fx.Tween = new Class({
+
+	Extends: CSS,
 
 	initialize: function(element, options){
 		this.element = this.subject = document.id(element);
@@ -116,6 +119,6 @@ Element.implement({
 
 });
 
-return this;
+return Tween;
 
 });

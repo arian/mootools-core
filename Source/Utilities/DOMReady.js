@@ -16,8 +16,11 @@ provides: [DOMReady, DomReady]
 
 define(function(require){
 
-require('../Browser/Browser');
-require('../Element/Element');
+define.context = 'Utilities/DOMReady';
+
+var Browser = require('../Browser/Browser'),
+	Element = require('../Element/Element').Element;
+
 require('../Element/Element.Event');
 
 var window = this.window,
@@ -108,6 +111,6 @@ window.addEvent('load', function(){
 	loaded = true;
 });
 
-return this;
+return Element;
 
 });

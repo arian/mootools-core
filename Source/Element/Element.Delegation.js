@@ -16,7 +16,13 @@ provides: [Element.Delegation]
 
 define(function(require){
 
-require('./Element');
+define.context = 'Element/Element.Delegation';
+
+var Array = require('../Types/Array'),
+	Element = require('./Element').Element,
+	Browser = require('../Browser/Browser'),
+	Window = Browser.Window,
+	Document = Browser.Document;
 require('./Element.Event');
 
 var eventListenerSupport = !!window.addEventListener;
@@ -199,6 +205,6 @@ var delegation = {
 	removeEvent: relay(removeEvent, delegation.removeEvent)
 });
 
-return this;
+return Element;
 
 });

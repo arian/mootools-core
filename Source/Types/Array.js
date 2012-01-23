@@ -16,7 +16,9 @@ provides: Array
 
 define(function(require){
 
-require('../Core/Core');
+define.context = 'Types/Array';
+
+var Array = require('../Core/Core').Array;
 
 Array.implement({
 
@@ -182,6 +184,6 @@ this.$pick = function(){
 
 //</1.2compat>
 
-return this;
+return Array;
 
 });

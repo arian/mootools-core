@@ -19,11 +19,13 @@ provides: Cookie
 
 define(function(require){
 
-require('../Class/Class');
-require('../Class/Class.Extras');
-require('../Browser/Browser');
+define.context = 'Utilities/Cookie';
 
-var Cookie = this.Cookie = new Class({
+var Class = require('../Class/Class'),
+	Options = require('../Class/Class.Extras').Options,
+	Browser = require('../Browser/Browser');
+
+var Cookie = new Class({
 
 	Implements: Options,
 
@@ -79,6 +81,10 @@ Cookie.dispose = function(key, options){
 	return new Cookie(key, options).dispose();
 };
 
-return this;
+//<!amd>
+if (!define.amd) this.Cookie = Cookie;
+//</!amd>
+
+return Cookie;
 
 });

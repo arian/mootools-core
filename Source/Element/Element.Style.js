@@ -16,7 +16,12 @@ provides: Element.Style
 
 define(function(require){
 
-require('./Element');
+define.context = 'Element/Element.Style';
+
+var Element = require('./Element').Element;
+//<1.2compat>
+var Hash = require('../Core/Core').Hash;
+//</1.2compat>
 
 var html = document.html;
 
@@ -198,6 +203,6 @@ Element.ShortStyles = {margin: {}, padding: {}, border: {}, borderWidth: {}, bor
 	Short.borderColor[bdc] = Short[bd][bdc] = All[bdc] = 'rgb(@, @, @)';
 });
 
-return this;
+return Element;
 
 });

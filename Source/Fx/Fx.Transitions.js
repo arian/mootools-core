@@ -19,7 +19,12 @@ provides: Fx.Transitions
 
 define(function(require){
 
-require('./Fx');
+define.context = 'Fx/Fx.Transitions';
+
+var Fx = require('./Fx');
+//<1.2compat>
+var Hash = require('../Core/Core').Hash;
+//</1.2compat>
 
 Fx.implement({
 
@@ -116,6 +121,6 @@ Fx.Transitions.extend({
 	});
 });
 
-return this;
+return Fx.Transitions;
 
 });
