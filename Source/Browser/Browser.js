@@ -35,7 +35,7 @@ var ua = navigator.userAgent.toLowerCase(),
 	UA = ua.match(/(opera|ie|firefox|chrome|version)[\s\/:]([\w\d\.]+)?.*?(safari|version[\s\/:]([\w\d\.]+)|$)/) || [null, 'unknown', 0],
 	mode = UA[1] == 'ie' && document.documentMode;
 
-var Browser = module.exports = {
+var Browser = exports = module.exports = {
 
 	extend: Function.prototype.extend,
 
@@ -144,7 +144,7 @@ Browser.extend({
 	Event: global.Event
 });
 
-var Window = exports.Window = Browser.Window = window.$constructor = new Type('Window', function(){});
+var Window = exports.Window = window.$constructor = new Type('Window', function(){});
 
 window.$family = Function.from('window').hide();
 
@@ -152,7 +152,7 @@ Window.mirror(function(name, method){
 	window[name] = method;
 });
 
-var Document = exports.Document = Browser.Document = document.$constructor = new Type('Document', function(){});
+var Document = exports.Document = document.$constructor = new Type('Document', function(){});
 
 document.$family = Function.from('document').hide();
 
