@@ -23,6 +23,7 @@ var Array = require('../Types/Array'),
 	Browser = require('../Browser/Browser'),
 	Window = Browser.Window,
 	Document = Browser.Document;
+
 require('./Element.Event');
 
 var eventListenerSupport = !!window.addEventListener;

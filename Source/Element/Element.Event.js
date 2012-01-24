@@ -24,6 +24,7 @@ var Array = require('../Types/Array'),
 	Window = Browser.Window,
 	Document = Browser.Document,
 	DOMEvent = require('../Types/DOMEvent');
+
 //<1.2compat>
 var Hash = require('../Core/Core').Hash;
 //</1.2compat>

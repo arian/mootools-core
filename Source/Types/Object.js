@@ -19,6 +19,7 @@ define(function(require, exports, module){
 module._id = 'Types/Object';
 
 var Object = module.exports = require('../Core/Core').Object;
+
 //<1.2compat>
 var Hash = require('../Core/Core').Hash;
 //</1.2compat>

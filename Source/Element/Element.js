@@ -461,7 +461,7 @@ if (window.$$ == null) Window.implement('$$', function(selector){
 	for (var i = 0, l = args.length; i < l; i++){
 		var item = args[i];
 		switch (typeOf(item)){
-			case 'element': elements.push(item);break;
+			case 'element': elements.push(item); break;
 			case 'string': Slick.search(this.document, item, elements);
 		}
 	}

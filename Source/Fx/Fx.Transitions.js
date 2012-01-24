@@ -22,6 +22,7 @@ define(function(require, exports, module){
 module._id = 'Fx/Fx.Transitions';
 
 var Fx = require('./Fx');
+
 //<1.2compat>
 var Hash = require('../Core/Core').Hash;
 //</1.2compat>

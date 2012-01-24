@@ -22,6 +22,7 @@ var Class = require('../Class/Class'),
 	Element = require('../Element/Element.Style'),
 	Fx = require('./Fx'),
 	Array = require('../Core/Core').Array;
+
 //<1.2compat>
 var Hash = require('../Core/Core').Hash;
 //</1.2compat>

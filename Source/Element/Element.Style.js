@@ -19,6 +19,7 @@ define(function(require, exports, module){
 module._id = 'Element/Element.Style';
 
 var Element = module.exports = require('./Element').Element;
+
 //<1.2compat>
 var Hash = require('../Core/Core').Hash;
 //</1.2compat>
