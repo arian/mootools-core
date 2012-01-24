@@ -30,13 +30,15 @@ var global = require('../Core/Core').global,
 var Hash = require('../Core/Core').Hash;
 //</1.2compat>
 
+var JSON = global.JSON || {};
+
 exports = module.exports = {
 	stringify: JSON.stringify,
 	parse: JSON.parse
 };
 
 //<1.2compat>
-exports = module.exports = new Hash(JSON);
+exports = module.exports = new Hash(exports);
 //</1.2compat>
 
 var special = {'\b': '\\b', '\t': '\\t', '\n': '\\n', '\f': '\\f', '\r': '\\r', '"' : '\\"', '\\': '\\\\'};
