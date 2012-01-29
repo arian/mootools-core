@@ -17,9 +17,7 @@ provides: Fx.Transitions
 ...
 */
 
-define(function(require, exports, module){
-
-module._id = 'Fx/Fx.Transitions';
+define('MooTools/1/Fx/Fx.Transitions', function(require, exports){
 
 var Fx = require('./Fx');
 

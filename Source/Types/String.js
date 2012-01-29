@@ -14,9 +14,7 @@ provides: String
 ...
 */
 
-define(function(require, exports, module){
-
-module._id = 'Types/String';
+define('MooTools/1/Types/String', function(require, exports, module){
 
 var String = module.exports = require('../Core/Core').String;
 

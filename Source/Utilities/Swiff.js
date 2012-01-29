@@ -17,9 +17,7 @@ provides: Swiff
 ...
 */
 
-define(function(require, exports, module){
-
-module._id = 'Utilities/Swiff';
+define('MooTools/1/Utilities/Swiff', function(require, exports, module){
 
 var global = require('../Core/Core').global,
 	Class = require('../Class/Class'),

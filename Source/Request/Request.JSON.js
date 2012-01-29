@@ -14,9 +14,7 @@ provides: Request.JSON
 ...
 */
 
-define(function(require, exports, module){
-
-module._id = 'Request/Request.JSON';
+define('MooTools/1/Request/Request.JSON', function(require, exports, module){
 
 var Class = require('../Class/Class'),
 	Request = require('./Request'),

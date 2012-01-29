@@ -17,9 +17,7 @@ provides: Cookie
 ...
 */
 
-define(function(require, exports, module){
-
-module._id = 'Utilities/Cookie';
+define('MooTools/1/Utilities/Cookie', function(require, exports, module){
 
 var global = require('../Core/Core').global,
 	Class = require('../Class/Class'),

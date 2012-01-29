@@ -14,9 +14,7 @@ provides: [DOMReady, DomReady]
 ...
 */
 
-define(function(require, exports, module){
-
-module._id = 'Utilities/DOMReady';
+define('MooTools/1/Utilities/DOMReady', function(require, exports, module){
 
 var global = require('../Core/Core').global,
 	Browser = require('../Browser/Browser'),

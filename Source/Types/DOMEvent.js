@@ -14,9 +14,7 @@ provides: Event
 ...
 */
 
-define(function(require, exports, module){
-
-module._id = 'Types/DOMEvent';
+define('MooTools/1/Types/DOMEvent', function(require, exports, module){
 
 var Core = require('../Core/Core'),
 	global = Core.global,

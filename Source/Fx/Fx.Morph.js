@@ -14,9 +14,7 @@ provides: Fx.Morph
 ...
 */
 
-define(function(require, exports, module){
-
-module._id = 'Fx/Fx.Morph';
+define('MooTools/1/Fx/Fx.Morph', function(require, exports, module){
 
 var Class = require('../Class/Class'),
 	Fx = require('./Fx'),

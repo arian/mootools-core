@@ -14,9 +14,7 @@ provides: Request
 ...
 */
 
-define(function(require, exports, module){
-
-module._id = 'Request/Request';
+define('MooTools/1/Request/Request', function(require, exports, module){
 
 var global = require('../Core/Core').global,
 	Class = require('../Class/Class'),

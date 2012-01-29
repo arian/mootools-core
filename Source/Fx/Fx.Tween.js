@@ -14,9 +14,7 @@ provides: [Fx.Tween, Element.fade, Element.highlight]
 ...
 */
 
-define(function(require, exports, module){
-
-module._id = 'Fx/Fx.Tween';
+define('MooTools/1/Fx/Fx.Tween', function(require, exports, module){
 
 var Class = require('../Class/Class'),
 	Fx = require('./Fx'),

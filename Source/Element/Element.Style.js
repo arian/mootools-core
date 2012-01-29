@@ -14,9 +14,7 @@ provides: Element.Style
 ...
 */
 
-define(function(require, exports, module){
-
-module._id = 'Element/Element.Style';
+define('MooTools/1/Element/Element.Style', function(require, exports, module){
 
 var Element = module.exports = require('./Element').Element;
 

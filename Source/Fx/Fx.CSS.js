@@ -14,9 +14,7 @@ provides: Fx.CSS
 ...
 */
 
-define(function(require, exports, module){
-
-module._id = 'Fx/Fx.CSS';
+define('MooTools/1/Fx/Fx.CSS', function(require, exports, module){
 
 var Class = require('../Class/Class'),
 	Element = require('../Element/Element.Style'),

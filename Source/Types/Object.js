@@ -14,9 +14,7 @@ provides: [Object, Hash]
 ...
 */
 
-define(function(require, exports, module){
-
-module._id = 'Types/Object';
+define('MooTools/1/Types/Object', function(require, exports, module){
 
 var Object = module.exports = require('../Core/Core').Object;
 

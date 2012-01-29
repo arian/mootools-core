@@ -14,9 +14,7 @@ provides: [Class.Extras, Chain, Events, Options]
 ...
 */
 
-define(function(require, exports, module){
-
-module._id = 'Class/Class.Extras';
+define('MooTools/1/Class/Class.Extras', function(require, exports){
 
 var global = require('../Core/Core').global,
 	Class = require('./Class'),

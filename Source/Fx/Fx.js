@@ -14,9 +14,7 @@ provides: Fx
 ...
 */
 
-define(function(require, exports, module){
-
-module._id = 'Fx/Fx';
+define('MooTools/1/Fx/Fx', function(require, exports, module){
 
 var global = require('../Core/Core').global,
 	Class = require('../Class/Class'),

@@ -14,9 +14,7 @@ provides: [Browser, Window, Document]
 ...
 */
 
-define(function(require, exports, module){
-
-module._id = 'Browser/Browser';
+define('MooTools/1/Browser/Browser', function(require, exports, module){
 
 var Core = require('../Core/Core'),
 	global = Core.global,

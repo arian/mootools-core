@@ -6,9 +6,7 @@ provides: Slick.Parser
 ...
 */
 
-define(function(require, exports, module){
-
-module._id = 'Slick/Slick.Parser';
+define('Slick/Slick.Parser', function(require, exports){
 
 var parsed,
 	separatorIndex,

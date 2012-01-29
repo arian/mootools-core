@@ -14,9 +14,7 @@ provides: [Element.Delegation]
 ...
 */
 
-define(function(require, exports, module){
-
-module._id = 'Element/Element.Delegation';
+define('MooTools/1/Element/Element.Delegation', function(require, exports, module){
 
 var Array = require('../Types/Array'),
 	Element = module.exports = require('./Element').Element,

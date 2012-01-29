@@ -7,9 +7,7 @@ requires: Slick.Parser
 ...
 */
 
-define(function(require, exports, module){
-
-module._id = 'Slick/Slick.Finder';
+define('Slick/Slick.Finder', function(require, exports){
 
 var Slick = require('./Slick.Parser');
 

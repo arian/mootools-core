@@ -14,9 +14,7 @@ provides: Function
 ...
 */
 
-define(function(require, exports, module){
-
-module._id = 'Types/Function';
+define('MooTools/1/Types/Function', function(require, exports, module){
 
 var global = require('../Core/Core').global,
 	Function = module.exports = require('../Core/Core').Function;

@@ -16,9 +16,7 @@ provides: JSON
 ...
 */
 
-define(function(require, exports, module){
-
-module._id = 'Utilities/JSON';
+define('MooTools/1/Utilities/JSON', function(require, exports, module){
 
 var global = require('../Core/Core').global,
 	Array = require('../Types/Array'),

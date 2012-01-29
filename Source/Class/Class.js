@@ -14,9 +14,7 @@ provides: Class
 ...
 */
 
-define(function(require, exports, module){
-
-module._id = 'Class/Class';
+define('MooTools/1/Class/Class', function(require, exports, module){
 
 var Core = require('../Core/Core'),
 	global = Core.global,

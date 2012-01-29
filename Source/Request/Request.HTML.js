@@ -14,9 +14,7 @@ provides: Request.HTML
 ...
 */
 
-define(function(require, exports, module){
-
-module._id = 'Request/Request.HTML';
+define('MooTools/1/Request/Request.HTML', function(require, exports, module){
 
 var Class = require('../Class/Class'),
 	Request = require('./Request');

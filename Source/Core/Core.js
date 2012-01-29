@@ -30,14 +30,15 @@ require = function(name){
 	return loaded[name];
 };
 
-define = function(fn){
+define = function(id, fn){
 	var module = {exports: {}};
 	var require = function(name){
-		name = normalize(name, module._id);
+		name = normalize(name, id);
+		console.log(name);
 		return loaded[name];
 	};
 	fn.call(module.exports, require, module.exports, module);
-	loaded[module._id] = module.exports;
+	loaded[id] = module.exports;
 };
 
 define.amd = {};
@@ -46,7 +47,7 @@ delete define.amd;
 //</!amd>
 
 var normalize = function(name, relative){
-	if (relative == null) return name;
+	if (relative == null || name.slice(0, 1) != '.') return name;
 	relative = relative.split('/');
 	if (name.slice(0, 2) == './'){
 		name = name.slice(2);
@@ -63,9 +64,7 @@ var normalize = function(name, relative){
 
 })();
 
-define(function(require, exports, module){
-
-module._id = 'Core/Core';
+define('MooTools/1/Core/Core', function(require, exports){
 
 exports.MooTools = {
 	version: '1.5.0dev',

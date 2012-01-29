@@ -14,9 +14,7 @@ provides: Array
 ...
 */
 
-define(function(require, exports, module){
-
-module._id = 'Types/Array';
+define('MooTools/1/Types/Array', function(require, exports, module){
 
 var global = require('../Core/Core').global,
 	Array = module.exports = require('../Core/Core').Array;

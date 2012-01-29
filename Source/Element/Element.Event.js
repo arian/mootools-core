@@ -14,9 +14,7 @@ provides: Element.Event
 ...
 */
 
-define(function(require, exports, module){
-
-module._id = 'Element/Element.Event';
+define('MooTools/1/Element/Element.Event', function(require, exports, module){
 
 var Array = require('../Types/Array'),
 	Element = module.exports = require('./Element').Element,

@@ -14,9 +14,7 @@ provides: Number
 ...
 */
 
-define(function(require, exports, module){
-
-module._id = 'Types/Number';
+define('MooTools/1/Types/Number', function(require, exports, module){
 
 var Number = module.exports = require('../Core/Core').Number;
 
