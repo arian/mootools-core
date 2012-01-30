@@ -16,8 +16,7 @@ provides: Fx
 
 define('MooTools/1/Fx/Fx', function(require, exports, module){
 
-var global = require('../Core/Core').global,
-	Class = require('../Class/Class'),
+var Class = require('../Class/Class'),
 	Extras = require('../Class/Class.Extras'),
 	Chain = Extras.Chain,
 	Events = Extras.Events,
@@ -188,7 +187,7 @@ var pullInstance = function(fps){
 };
 
 //<!amd>
-if (!define.amd) global.Fx = Fx;
+require('../Core/Core').global.Fx = Fx;
 //</!amd>
 
 });

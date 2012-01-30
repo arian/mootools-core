@@ -16,8 +16,7 @@ provides: Array
 
 define('MooTools/1/Types/Array', function(require, exports, module){
 
-var global = require('../Core/Core').global,
-	Array = module.exports = require('../Core/Core').Array;
+var Array = module.exports = require('../Core/Core').Array;
 
 Array.implement({
 
@@ -177,7 +176,7 @@ Array.implement({
 
 Array.alias('extend', 'append');
 
-global.$pick = function(){
+require('../Core/Core').global.$pick = function(){
 	return Array.from(arguments).pick();
 };
 

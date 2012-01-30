@@ -17,7 +17,6 @@ provides: Class
 define('MooTools/1/Class/Class', function(require, exports, module){
 
 var Core = require('../Core/Core'),
-	global = Core.global,
 	typeOf = Core.typeOf,
 	instanceOf = Core.instanceOf,
 	Type = Core.Type,
@@ -123,7 +122,7 @@ Class.Mutators = {
 };
 
 //<!amd>
-if (!define.amd) global.Class = Class;
+Core.global.Class = Class;
 //</!amd>
 
 });

@@ -34,7 +34,6 @@ define = function(id, fn){
 	var module = {exports: {}};
 	var require = function(name){
 		name = normalize(name, id);
-		console.log(name);
 		return loaded[name];
 	};
 	fn.call(module.exports, require, module.exports, module);
@@ -562,9 +561,7 @@ exports.$unlink = function(object){
 //</1.2compat>
 
 //<!amd>
-if (!define.amd) for (var m in exports){
-	global[m] = exports[m];
-}
+Object.append(global, exports);
 //</!amd>
 
 });

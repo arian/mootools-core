@@ -16,8 +16,7 @@ provides: Request
 
 define('MooTools/1/Request/Request', function(require, exports, module){
 
-var global = require('../Core/Core').global,
-	Class = require('../Class/Class'),
+var Class = require('../Class/Class'),
 	Extras = require('../Class/Class.Extras'),
 	Chain = Extras.Chain,
 	Events = Extras.Events,
@@ -286,7 +285,7 @@ Element.implement({
 });
 
 //<!amd>
-if (!define.amd) global.Request = Request;
+require('../Core/Core').global.Request = Request;
 //</!amd>
 
 });

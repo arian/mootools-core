@@ -262,7 +262,7 @@ exports.$exec = Browser.exec;
 //</1.2compat>
 
 //<!amd>
-if (!define.amd) for (var m in exports) global[m] = exports[m];
+Object.append(global, exports);
 //</!amd>
 
 });

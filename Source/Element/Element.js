@@ -19,7 +19,6 @@ provides: [Element, Elements, $, $$, Iframe, Selectors]
 define('MooTools/1/Element/Element', function(require, exports){
 
 var Core = require('../Core/Core'),
-	global = Core.global,
 	Type = Core.Type,
 	typeOf = Core.typeOf,
 	Browser = require('../Browser/Browser'),
@@ -110,7 +109,7 @@ Element.Constructors = new Hash;
 
 //</1.2compat>
 
-exports.IFrame = new Type('IFrame', function(){
+var IFrame = exports.IFrame = new Type('IFrame', function(){
 	var params = Array.link(arguments, {
 		properties: Type.isObject,
 		iframe: function(obj){
@@ -1053,11 +1052,11 @@ if (document.createElement('div').getAttributeNode('id')) Element.Properties.id 
 /*</IE>*/
 
 //<!amd>
-if (!define.amd){
-	global.Element = Element;
-	global.Elements = Elements;
-	global.IFrame = exports.IFrame;
-}
+Object.append(Core.global, {
+	Element: Element,
+	Elements: Elements,
+	IFrame: IFrame
+});
 //</!amd>
 
 });

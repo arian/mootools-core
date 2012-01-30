@@ -19,8 +19,7 @@ provides: Swiff
 
 define('MooTools/1/Utilities/Swiff', function(require, exports, module){
 
-var global = require('../Core/Core').global,
-	Class = require('../Class/Class'),
+var Class = require('../Class/Class'),
 	Options = require('../Class/Class.Extras').Options,
 	Object = require('../Types/Object'),
 	Element = require('../Element/Element').Element;
@@ -118,7 +117,7 @@ Swiff.remote = function(obj, fn){
 };
 
 //<!amd>
-if (!define.amd) global.Swiff = Swiff;
+require('../Core/Core').global.Swiff = Swiff;
 //</!amd>
 
 });

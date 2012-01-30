@@ -16,10 +16,10 @@ provides: [Class.Extras, Chain, Events, Options]
 
 define('MooTools/1/Class/Class.Extras', function(require, exports){
 
-var global = require('../Core/Core').global,
-	Class = require('./Class'),
+var Class = require('./Class'),
 	Array = require('../Types/Array'),
-	Object = require('../Core/Core').Object;
+	Core = require('../Core/Core'),
+	Object = Core.Object;
 
 exports.Chain = new Class({
 
@@ -124,7 +124,7 @@ exports.Options = new Class({
 });
 
 //<!amd>
-if (!define.amd) for (var m in exports) global[m] = exports[m];
+Object.append(Core.global, exports);
 //</!amd>
 
 });

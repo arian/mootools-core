@@ -229,7 +229,7 @@ Slick.parse = function(expression){
 Slick.escapeRegExp = escapeRegExp;
 
 /*<!amd>*/
-if ((typeof define != 'function' || !define.amd) && !global.Slick) global.Slick = Slick;
+if (!global.Slick) global.Slick = Slick;
 /*</!amd>*/
 
 });

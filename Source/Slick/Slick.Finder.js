@@ -983,8 +983,7 @@ Slick.uidOf = function(node){
 /*<!amd>*/
 if (typeof global == 'undefined') var global = {};
 if (typeof window != 'undefined') global = window;
-
-if ((typeof define != 'function' || !define.amd) && !global.Slick) global.Slick = Slick;
+if (!global.Slick) global.Slick = Slick;
 /*</!amd>*/
 
 });

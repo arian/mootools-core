@@ -59,7 +59,7 @@ Element.Properties.tween = {
 	get: function(){
 		var tween = this.retrieve('tween');
 		if (!tween){
-			tween = new Fx.Tween(this, {link: 'cancel'});
+			tween = new Tween(this, {link: 'cancel'});
 			this.store('tween', tween);
 		}
 		return tween;

@@ -23,7 +23,11 @@
 (function(){
 
 require.config({
-	baseUrl: '../../Source',
+	baseUrl: '../../',
+	paths: {
+		'MooTools/1': 'Source',
+		'Slick': 'Source/Slick'
+	},
 	urlArgs: "bust=" +  (+new Date())
 });
 

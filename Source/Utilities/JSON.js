@@ -89,10 +89,7 @@ exports.decode = function(string, secure){
 };
 
 //<!amd>
-if (!define.amd){
-	if (!global.JSON) global.JSON = {};
-	for (var m in exports) global.JSON[m] = exports[m];
-}
+Object.append(global.JSON || (global.JSON = {}), exports);
 //</!amd>
 
 });
