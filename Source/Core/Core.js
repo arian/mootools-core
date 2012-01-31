@@ -20,39 +20,25 @@ provides: [Core, MooTools, Type, typeOf, instanceOf, Native]
 ...
 */
 
-var has;
-
 if (typeof has != 'function') (function(){
 
-var features = {};
+var features = this.has || (this.global && this.global.has) || {};
 
-has = function(feature){
+this.has = function(feature){
 	return features[feature] || false;
 };
 
-has.define = function(feature, result){
-	features[feature] = !![result];
-};
-
-if (typeof global != 'undefined') global.has = has;
-
 })();
-
-var define, require;
-if (typeof global != 'undefined'){
-	define = global.define;
-	require = global.require;
-}
 
 if (typeof define == 'undefined') (function(){
 
 var loaded = {};
 
-require = function(name){
+this.require = function(name){
 	return loaded[name];
 };
 
-define = function(id, deps, fn){
+var define = this.define = function(id, deps, fn){
 	if (typeof deps == 'function') fn = deps;
 	var module = {exports: {}};
 	var require = function(name){
@@ -83,8 +69,6 @@ var normalize = function(name, relative){
 	relative.push(name);
 	return relative.join('/');
 };
-
-if (typeof global != 'undefined') global.define = define;
 
 })();
 

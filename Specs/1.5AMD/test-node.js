@@ -5,9 +5,8 @@ var amdRequire = require('./node-require');
 var jasmine = require('../Runner/Jasmine-Node/lib/jasmine');
 var reporter = require('../Runner/Jasmine-Node/lib/reporters/console').Reporter;
 
-global.has = function(feature){
-	if (feature == 'amd') return true;
-	return false;
+global.has = {
+	amd: true
 };
 
 amdRequire.config = {
