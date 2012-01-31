@@ -30,7 +30,8 @@ require = function(name){
 	return loaded[name];
 };
 
-define = function(id, fn){
+define = function(id, deps, fn){
+	if (typeof deps == 'function') fn = deps;
 	var module = {exports: {}};
 	var require = function(name){
 		name = normalize(name, id);
