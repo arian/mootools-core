@@ -18,7 +18,9 @@ provides: JSON
 
 define('MooTools/1/Utilities/JSON', function(require, exports, module){
 
-var global = require('../Core/Core').global,
+var Core = require('../Core/Core'),
+	typeOf = Core.typeOf,
+	global = Core.global,
 	Array = require('../Types/Array'),
 	String = require('../Types/String'),
 	Number = require('../Types/Number'),
