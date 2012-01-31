@@ -34,11 +34,17 @@ has.define = function(feature, result){
 	features[feature] = !![result];
 };
 
+if (typeof global != 'undefined') global.has = has;
+
 })();
 
 var define, require;
+if (typeof global != 'undefined'){
+	define = global.define;
+	require = global.require;
+}
 
-if (typeof define != 'function') (function(){
+if (typeof define == 'undefined') (function(){
 
 var loaded = {};
 
@@ -78,6 +84,8 @@ var normalize = function(name, relative){
 	return relative.join('/');
 };
 
+if (typeof global != 'undefined') global.define = define;
+
 })();
 
 define('MooTools/1/Core/Core', function(require, exports){
@@ -87,9 +95,7 @@ exports.MooTools = {
 	build: '%build%'
 };
 
-if (typeof global == 'undefined') var global = {};
-if (typeof window != 'undefined') global = window;
-exports.global = global;
+exports.global = ((typeof window != 'undefined') && window) || ((typeof global != 'undefined') && global);
 
 exports.Function = Function;
 exports.Array = Array;
@@ -578,7 +584,7 @@ exports.$unlink = function(object){
 //</1.2compat>
 
 //<!amd>
-if (!has('amd')) Object.append(global, exports);
+if (!has('amd')) Object.append(exports.global, exports);
 //</!amd>
 
 });

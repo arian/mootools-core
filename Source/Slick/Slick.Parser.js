@@ -217,10 +217,8 @@ function parser(
 
 // Slick NS
 
-if (typeof global == 'undefined') var global = {};
-if (typeof window != 'undefined') global = window;
-
-var Slick = (global.Slick || exports || {});
+var _global = ((typeof window != 'undefined') && window) || ((typeof global != 'undefined') && global);
+var Slick = (_global.Slick || exports || {});
 
 Slick.parse = function(expression){
 	return parse(expression);
@@ -229,7 +227,7 @@ Slick.parse = function(expression){
 Slick.escapeRegExp = escapeRegExp;
 
 /*<!amd>*/
-if (!global.Slick) global.Slick = Slick;
+if (!_global.Slick) _global.Slick = Slick;
 /*</!amd>*/
 
 });
