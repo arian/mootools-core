@@ -80,7 +80,7 @@ Cookie.dispose = function(key, options){
 };
 
 //<!amd>
-require('../Core/Core').global.Cookie = Cookie;
+if (!has('amd')) require('../Core/Core').global.Cookie = Cookie;
 //</!amd>
 
 });

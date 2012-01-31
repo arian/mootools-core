@@ -132,7 +132,7 @@ DOMEvent.Keys = new Hash(DOMEvent.Keys);
 /*</1.2compat>*/
 
 //<!amd>
-Core.global.DOMEvent = /*<1.3compat>*/ Core.global.Event = /*</1.3compat>*/DOMEvent;
+if (!has('amd')) Core.global.DOMEvent = /*<1.3compat>*/ Core.global.Event = /*</1.3compat>*/DOMEvent;
 //</!amd>
 
 });

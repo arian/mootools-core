@@ -1,0 +1,4 @@
+#!/bin/sh
+
+node ../../build.js --all --has amd false > mootools-core-global.js
+node ../../build.js --all --has amd true > mootools-core-no-global.js

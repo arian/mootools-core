@@ -18,7 +18,8 @@ define('MooTools/1/Fx/Fx.Morph', function(require, exports, module){
 
 var Class = require('../Class/Class'),
 	Fx = require('./Fx'),
-	CSS = require('./Fx.CSS');
+	CSS = require('./Fx.CSS'),
+	Element = require('../Element/Element').Element;
 
 var Morph = Fx.Morph = module.exports = new Class({
 

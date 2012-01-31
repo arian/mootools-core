@@ -187,7 +187,7 @@ var pullInstance = function(fps){
 };
 
 //<!amd>
-require('../Core/Core').global.Fx = Fx;
+if (!has('amd')) require('../Core/Core').global.Fx = Fx;
 //</!amd>
 
 });

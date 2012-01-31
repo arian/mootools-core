@@ -21,8 +21,8 @@ var Class = require('../Class/Class'),
 	Chain = Extras.Chain,
 	Events = Extras.Events,
 	Options = Extras.Options,
-	Object = require('../Types/Object');
-	Browser = require('../Browser/Browser');
+	Object = require('../Types/Object'),
+	Browser = require('../Browser/Browser'),
 	Element = require('../Element/Element').Element;
 
 var empty = function(){},
@@ -285,7 +285,7 @@ Element.implement({
 });
 
 //<!amd>
-require('../Core/Core').global.Request = Request;
+if (!has('amd')) require('../Core/Core').global.Request = Request;
 //</!amd>
 
 });

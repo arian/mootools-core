@@ -17,7 +17,8 @@ provides: Request.HTML
 define('MooTools/1/Request/Request.HTML', function(require, exports, module){
 
 var Class = require('../Class/Class'),
-	Request = require('./Request');
+	Request = require('./Request'),
+	Element = require('../Element/Element').Element;
 
 Request.HTML = module.exports = new Class({
 

@@ -257,12 +257,16 @@ if (Browser.name == 'unknown'){
 	}
 }
 
-exports.$exec = Browser.exec;
+global.$exec = Browser.exec;
 
 //</1.2compat>
 
 //<!amd>
-Object.append(global, exports);
+if (!has('amd')) Object.append(global, {
+	'Browser': Browser,
+	'Window': Window,
+	'Document': Document
+});
 //</!amd>
 
 });

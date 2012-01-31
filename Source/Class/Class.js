@@ -122,7 +122,7 @@ Class.Mutators = {
 };
 
 //<!amd>
-Core.global.Class = Class;
+if (!has('amd')) Core.global.Class = Class;
 //</!amd>
 
 });

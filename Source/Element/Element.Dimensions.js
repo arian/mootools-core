@@ -21,7 +21,9 @@ provides: [Element.Dimensions]
 define('MooTools/1/Element/Element.Dimensions', function(require, exports, module){
 
 var Element = module.exports = require('./Element').Element,
-	Window = require('../Browser/Browser').Window;
+	Browser = require('../Browser/Browser'),
+	Window = Browser.Window,
+	Document = Browser.Document;
 
 require('./Element.Style');
 

@@ -42,7 +42,7 @@ for (var i = 2; i < process.argv.length; i++){
 	} else if (arg == '--optimize'){
 		optimize = true;
 	} else if (arg == '--has'){
-		has[process.argv[++i]] = process.argv[++i];
+		has[process.argv[++i]] = process.argv[++i] == 'true';
 	} else if (arg == '--all'){
 
 		[
@@ -98,7 +98,7 @@ if (!requires.length){
 }
 
 var config = {
-	baseUrl: '.',
+	baseUrl: __dirname,
 	paths: {
 		'MooTools/1': 'Source',
 		'Slick': 'Source/Slick'

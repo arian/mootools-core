@@ -1052,7 +1052,7 @@ if (document.createElement('div').getAttributeNode('id')) Element.Properties.id 
 /*</IE>*/
 
 //<!amd>
-Object.append(Core.global, {
+if (!has('amd')) Object.append(Core.global, {
 	Element: Element,
 	Elements: Elements,
 	IFrame: IFrame

@@ -89,7 +89,7 @@ exports.decode = function(string, secure){
 };
 
 //<!amd>
-Object.append(global.JSON || (global.JSON = {}), exports);
+if (!has('amd')) Object.append(global.JSON || (global.JSON = {}), exports);
 //</!amd>
 
 });

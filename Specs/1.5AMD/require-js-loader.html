@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+
+<!-- Jasmine -->
+
+<link rel="stylesheet" type="text/css" href="../Runner/Jasmine/jasmine.css">
+<link rel="stylesheet" type="text/css" href="../Runner/runner.css">
+
+<script type="text/javascript" src="../Runner/Jasmine/jasmine.js"></script>
+
+<!-- Specs -->
+<script src="../Runner/Helpers/jasmine-html.js"></script>
+<script src="../Runner/Helpers/Syn.js"></script>
+<script src="../Runner/Helpers/JSSpecToJasmine.js"></script>
+<script src="../Runner/Helpers/Loader.js"></script>
+<script src="require.js"></script>
+
+<script>
+
+(function(){
+
+require.config({
+	baseUrl: '../../',
+	paths: {
+		'MooTools/1': 'Source',
+		'Slick': 'Source/Slick'
+	},
+	urlArgs: "bust=" +  (+new Date())
+});
+
+describe('AMD with Requirejs, loading all files independently', function(){
+
+	// Currently some random tests to check whether the correct objects are required.
+
+	var tests = {
+
+		'Core/Core': function(Core){
+			expect(typeof Core.typeOf).toEqual('function');
+			expect(typeof typeOf).not.toEqual('undefined');
+			expect(typeof instanceOf).not.toEqual('undefined');
+			expect(typeof Type).not.toEqual('undefined');
+		},
+
+		'Element/Element': function(Element){
+			var el = new Element.Element('div', {
+				text: 'foo'
+			});
+			expect(el.get('text')).toEqual('foo');
+			expect(Element.$$('div').length).toBeGreaterThan(1);
+			expect(typeof IFrame).not.toEqual('undefined');
+		},
+
+		'Types/Function': function(Function){
+			expect(typeof Function.attempt).toEqual('function');
+		},
+
+		'Types/Object': function(Object){
+			expect(typeof Object.attempt).toEqual('function');
+		},
+
+		'Class/Class': function(Class){
+			expect(typeof Class).not.toEqual('undefined');
+			expect(typeof window.Class).not.toEqual('undefined');
+		},
+
+		'Class/Class.Extras': function(Extras){
+			expect(typeof Extras.Events).not.toEqual('undefined');
+			expect(typeof Extras.Chain).not.toEqual('undefined');
+			expect(typeof Extras.Options).not.toEqual('undefined');
+			expect(typeof Events).not.toEqual('undefined');
+			expect(typeof Chain).not.toEqual('undefined');
+			expect(typeof Options).not.toEqual('undefined');
+		},
+
+		'Browser/Browser': function(Browser){
+			expect(typeof Browser.name).not.toEqual('undefined');
+			expect(typeof window.Browser).toEqual('undefined');
+		},
+
+		'Fx/Fx.Tween': function(Tween){
+			expect(typeof Tween).not.toEqual('undefined');
+			expect(typeof Fx).not.toEqual('undefined');
+			expect(typeof Fx.Tween).not.toEqual('undefined');
+		},
+
+		'Request/Request.JSON': function(RequestJSON){
+			expect(typeof RequestJSON).not.toEqual('undefined');
+			expect(typeof Request).not.toEqual('undefined');
+		}
+
+	};
+
+	for (var name in tests) (function(name, test){
+
+		it('should load ' + name, function(){
+
+			var module;
+
+			require(['MooTools/1/' + name], function(_module){
+				module = _module;
+			});
+
+			waitsFor(function(){
+				return module != null;
+			}, 'loading ' + name, 500);
+
+			runs(function(){
+				test(module);
+			});
+
+		});
+
+	})(name, tests[name]);
+
+});
+
+window.onload = function(){
+	// Run the specs
+	jasmine.getEnv().addReporter(new jasmine.TrivialReporter());
+	jasmine.getEnv().execute();
+};
+
+})();
+</script>
+
+<title>MooTools-AMD Tests</title>
+</head>
+<body>
+	<div id="framework_name">AMD Tests</div>
+</body>
+</html>

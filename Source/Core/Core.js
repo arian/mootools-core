@@ -20,6 +20,22 @@ provides: [Core, MooTools, Type, typeOf, instanceOf, Native]
 ...
 */
 
+var has;
+
+if (typeof has != 'function') (function(){
+
+var features = {};
+
+has = function(feature){
+	return features[feature] || false;
+};
+
+has.define = function(feature, result){
+	features[feature] = !![result];
+};
+
+})();
+
 var define, require;
 
 if (typeof define != 'function') (function(){
@@ -43,7 +59,7 @@ define = function(id, deps, fn){
 
 define.amd = {};
 //<!amd>
-delete define.amd;
+if (!has('amd')) delete define.amd;
 //</!amd>
 
 var normalize = function(name, relative){
@@ -562,7 +578,7 @@ exports.$unlink = function(object){
 //</1.2compat>
 
 //<!amd>
-Object.append(global, exports);
+if (!has('amd')) Object.append(global, exports);
 //</!amd>
 
 });

@@ -124,7 +124,7 @@ exports.Options = new Class({
 });
 
 //<!amd>
-Object.append(Core.global, exports);
+if (!has('amd')) Object.append(Core.global, exports);
 //</!amd>
 
 });
