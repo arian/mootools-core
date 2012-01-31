@@ -47,6 +47,12 @@ describe('Node AMD', function(){
 		expect(JSON.encode({a: 1})).toEqual('{"a":1}');
 	});
 
+	it('should parse a CSS selector with Slick.Parse', function(){
+		var Slick = amdRequire('Slick/Slick.Parser');
+		var parsed = Slick.parse('div > a');
+		expect(parsed.raw).toEqual('div > a');
+	});
+
 });
 
 // Start Jasmine

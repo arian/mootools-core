@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>MooTools-AMD Tests</title>
+<style>
+	a {
+		text-decoration: none;
+	}
+
+	iframe {
+		width: 100%;
+		height: 150px;
+	}
+</style>
+</head>
+<body>
+
+	<blockquote>
+		Don't forget to build the JS files, by running <code>./build</code>
+	</blockquote>
+
+	<blockquote>
+		Run Node.JS tests with <code>node test-node.js</code>
+	</blockquote>
+
+	<h2>Built with globals <a href="test-built-global.html">→</a></h2>
+	<iframe src="test-built-global.html"></iframe>
+
+	<h2>Built without globals <a href="test-built-no-global.html">→</a></h2>
+	<iframe src="test-built-no-global.html"></iframe>
+
+	<h2>Requirejs with globals <a href="test-require-js-loader-global.html">→</a></h2>
+	<iframe src="test-require-js-loader-global.html"></iframe>
+
+	<h2>Requirejs without globals <a href="test-require-js-loader-no-global.html">→</a></h2>
+	<iframe src="test-require-js-loader-no-global.html"></iframe>
+
+</body>
+</html>

@@ -15,14 +15,24 @@
 <script src="../Runner/Helpers/Syn.js"></script>
 <script src="../Runner/Helpers/JSSpecToJasmine.js"></script>
 <script src="../Runner/Helpers/Loader.js"></script>
-
-<script src="mootools-core-global.js"></script>
+<script src="require.js"></script>
 
 <script>
 
 (function(){
 
-describe('AMD without Requirejs', function(){
+require.config({
+	baseUrl: '../../',
+	paths: {
+		'MooTools/1': 'Source',
+		'Slick': 'Source/Slick'
+	},
+	urlArgs: "bust=" +  (+new Date())
+});
+
+describe('AMD with Requirejs, loading all files independently', function(){
+
+	// Currently some random tests to check whether the correct objects are required.
 
 	var tests = {
 
@@ -62,9 +72,6 @@ describe('AMD without Requirejs', function(){
 			expect(typeof Events).not.toEqual('undefined');
 			expect(typeof Chain).not.toEqual('undefined');
 			expect(typeof Options).not.toEqual('undefined');
-			expect(Extras.Events).toBe(Events);
-			expect(Extras.Chain).toBe(Chain);
-			expect(Extras.Options).toBe(Options);
 		},
 
 		'Browser/Browser': function(Browser){
@@ -89,7 +96,19 @@ describe('AMD without Requirejs', function(){
 
 		it('should load ' + name, function(){
 
-			test(require('MooTools/1/' + name));
+			var module;
+
+			require(['MooTools/1/' + name], function(_module){
+				module = _module;
+			});
+
+			waitsFor(function(){
+				return module != null;
+			}, 'loading ' + name, 500);
+
+			runs(function(){
+				test(module);
+			});
 
 		});
 

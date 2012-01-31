@@ -19,6 +19,8 @@
 
 <script>
 
+var has = {amd: true};
+
 (function(){
 
 require.config({
@@ -38,9 +40,9 @@ describe('AMD with Requirejs, loading all files independently', function(){
 
 		'Core/Core': function(Core){
 			expect(typeof Core.typeOf).toEqual('function');
-			expect(typeof typeOf).not.toEqual('undefined');
-			expect(typeof instanceOf).not.toEqual('undefined');
-			expect(typeof Type).not.toEqual('undefined');
+			expect(typeof typeOf).toEqual('undefined');
+			expect(typeof instanceOf).toEqual('undefined');
+			expect(typeof Type).toEqual('undefined');
 		},
 
 		'Element/Element': function(Element){
@@ -49,7 +51,7 @@ describe('AMD with Requirejs, loading all files independently', function(){
 			});
 			expect(el.get('text')).toEqual('foo');
 			expect(Element.$$('div').length).toBeGreaterThan(1);
-			expect(typeof IFrame).not.toEqual('undefined');
+			expect(typeof IFrame).toEqual('undefined');
 		},
 
 		'Types/Function': function(Function){
@@ -62,16 +64,16 @@ describe('AMD with Requirejs, loading all files independently', function(){
 
 		'Class/Class': function(Class){
 			expect(typeof Class).not.toEqual('undefined');
-			expect(typeof window.Class).not.toEqual('undefined');
+			expect(typeof window.Class).toEqual('undefined');
 		},
 
 		'Class/Class.Extras': function(Extras){
 			expect(typeof Extras.Events).not.toEqual('undefined');
 			expect(typeof Extras.Chain).not.toEqual('undefined');
 			expect(typeof Extras.Options).not.toEqual('undefined');
-			expect(typeof Events).not.toEqual('undefined');
-			expect(typeof Chain).not.toEqual('undefined');
-			expect(typeof Options).not.toEqual('undefined');
+			expect(typeof Events).toEqual('undefined');
+			expect(typeof Chain).toEqual('undefined');
+			expect(typeof Options).toEqual('undefined');
 		},
 
 		'Browser/Browser': function(Browser){
@@ -81,13 +83,16 @@ describe('AMD with Requirejs, loading all files independently', function(){
 
 		'Fx/Fx.Tween': function(Tween){
 			expect(typeof Tween).not.toEqual('undefined');
-			expect(typeof Fx).not.toEqual('undefined');
-			expect(typeof Fx.Tween).not.toEqual('undefined');
+			expect(typeof Fx).toEqual('undefined');
 		},
 
 		'Request/Request.JSON': function(RequestJSON){
 			expect(typeof RequestJSON).not.toEqual('undefined');
-			expect(typeof Request).not.toEqual('undefined');
+			expect(typeof Request).toEqual('undefined');
+		},
+
+		'Utilities/JSON': function(JSON){
+			expect(JSON.encode({a: 1})).toEqual('{"a":1}');
 		}
 
 	};
