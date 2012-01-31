@@ -1,0 +1,28 @@
+{
+	"name": "MooTools Core",
+	"homepage": "http://mootools.net",
+	"version": "1.5.0",
+	"description": "MooTools, The JavaScript framework",
+	"keywords": ["framework", "MooTools", "JavaScript", "Browsers", "Class"],
+	"maintainers": [{
+		"name": "MooTools Development Team",
+		"web": "http://mootools.net/developers"
+	}],
+	"bugs": "https://github.com/mootools/mootools-core/issues",
+	"licenses": [{
+		"type": "MIT",
+		"url": "http://mootools.net/license.txt"
+	}],
+	"repositories": [{
+		"type": "git",
+		"url": "git://github.com/mootools/mootools-core.git"
+	}],
+	"implements": ["CommonJS/Packages/1.0", "CommonJS/Modules/AsynchronousDefinition"],
+	"scripts": {
+		"build": "build"
+	},
+	"directories": {
+		"lib": "Source"
+	},
+	"icon": "http://mootools.net/assets/images/mootools.png"
+}
