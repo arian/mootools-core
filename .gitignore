@@ -1,8 +1,4 @@
-mootools-core.js
-mootools-core-mobile.js
-mootools-core-global.js
-mootools-core-no-global.js
-mootools-amd.js
+mootools-*.js
 mootools-core.tmproj
 mootools-core.esproj
 node_modules
