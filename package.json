@@ -1,5 +1,5 @@
 {
-	"name": "MooTools Core",
+	"name": "MooTools-Core",
 	"homepage": "http://mootools.net",
 	"version": "1.5.0",
 	"description": "MooTools, The JavaScript framework",
@@ -24,5 +24,8 @@
 	"directories": {
 		"lib": "Source"
 	},
-	"icon": "http://mootools.net/assets/images/mootools.png"
+	"icon": "http://mootools.net/assets/images/mootools.png",
+	"dependencies": {
+		"requirejs": ">=1.0.5"
+	}
 }
