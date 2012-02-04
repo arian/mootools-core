@@ -219,6 +219,32 @@ describe('Element', function(){
 
 	});
 
+	describe('Element.set/get text of style element', function(){
+
+		it('should set and get the CSS of a <style> element', function(){
+			// new Element('style', {type: 'text/css'}); does not work
+			var style = document.createElement('style');
+			style.type = 'text/css';
+			var definition = [
+				'.pos-abs-left {',
+					'position: absolute;',
+					'width: 200px;',
+					'height: 200px;',
+					'left: 10%;',
+					'background: red;',
+				'}'
+			].join('');
+			style.set('text', definition);
+			var returned = style.get('text').toLowerCase();
+			expect(returned.indexOf('position: absolute')).not.toEqual(-1);
+			expect(returned.indexOf('width: 200px')).not.toEqual(-1);
+			expect(returned.indexOf('height: 200px')).not.toEqual(-1);
+			expect(returned.indexOf('left: 10%')).not.toEqual(-1);
+			expect(returned.indexOf('background: red')).not.toEqual(-1);
+		});
+
+	});
+
 	describe("Element.erase('html')", function(){
 
 		it('should empty the html inside an element', function(){

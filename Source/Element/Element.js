@@ -593,13 +593,41 @@ el = null;
 var input = document.createElement('input');
 input.value = 't';
 input.type = 'submit';
-if (input.value != 't') propertySetters.type = function(node, type){
-	var value = node.value;
-	node.type = type;
-	node.value = value;
-};
+if (input.value != 't') (function(set){
+	propertySetters.type = function(node, type){
+		var tag = node.get('tag');
+		if (tag == 'input' || tag == 'button'){
+			var value = node.value;
+			node.type = type;
+			node.value = value;
+		} else set(node, type);
+	};
+})(propertySetters.type);
 input = null;
+
 /*</IE>*/
+
+/* <ltIE9> */
+// oldIE can't set the CSS text to a <style> element: #2265
+var style = document.createElement('style');
+style.type = 'text/css';
+try {
+	propertySetters.text(node, 'a{left:0}');
+	style = propertyGetters.text(node).indexOf('left') == -1;
+} catch(e){}
+if (style) (function(set, get){
+	propertySetters.text = function(node, value){
+		if (node.get('tag') == 'style' && node.styleSheet) node.styleSheet.cssText = value;
+		else set(node, value);
+	};
+	propertyGetters.text = function(node){
+		if (node.get('tag') == 'style' && node.styleSheet) return node.styleSheet.cssText;
+		return get(node);
+	};
+})(propertySetters.text, propertyGetters.text);
+style = null;
+
+/* </ltIE9> */
 
 /* getProperty, setProperty */
 
