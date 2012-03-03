@@ -72,13 +72,15 @@ for (var i = 2; i < process.argv.length; i++){
 			'Utilities/Cookie',
 			'Utilities/JSON',
 			'Utilities/DOMReady',
-			'Utilities/Swiff'
+			'Utilities/Swiff',
+			'Slick/Slick.Parser',
+			'Slick/Slick.Finder'
 		].forEach(function(file){
 			requires.push('MooTools/1/' + file);
 		});
 
-		requires.push('Slick/Slick.Parser');
-		requires.push('Slick/Slick.Finder');
+//		requires.push('Slick/Slick.Parser');
+//		requires.push('Slick/Slick.Finder');
 
 	} else {
 		requires.push(arg);
@@ -98,10 +100,10 @@ if (!requires.length){
 }
 
 var config = {
-	baseUrl: __dirname,
+	baseUrl: __dirname + '/AMDified',
 	paths: {
-		'MooTools/1': 'Source',
-		'Slick': 'Source/Slick'
+		'MooTools/1': '.'//,
+//		'Slick': 'Source/Slick'
 	},
 	out: 'mootools-amd.js',
 	optimize: optimize ? 'uglify' : 'none',
