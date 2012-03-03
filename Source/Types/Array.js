@@ -14,8 +14,6 @@ provides: Array
 ...
 */
 
-define('MooTools/1/Types/Array', function(require, exports, module){
-
 var Array = module.exports = require('../Core/Core').Array;
 
 Array.implement({
@@ -181,5 +179,3 @@ require('../Core/Core').global.$pick = function(){
 };
 
 //</1.2compat>
-
-});

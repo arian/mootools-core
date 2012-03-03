@@ -14,8 +14,6 @@ provides: Event
 ...
 */
 
-define('MooTools/1/Types/DOMEvent', function(require, exports, module){
-
 var Core = require('../Core/Core'),
 	Type = Core.Type,
 	Browser = require('../Browser/Browser'),
@@ -134,5 +132,3 @@ DOMEvent.Keys = new Hash(DOMEvent.Keys);
 //<!amd>
 if (!has('amd')) Core.global.DOMEvent = /*<1.3compat>*/ Core.global.Event = /*</1.3compat>*/DOMEvent;
 //</!amd>
-
-});

@@ -14,8 +14,6 @@ provides: Fx
 ...
 */
 
-define('MooTools/1/Fx/Fx', function(require, exports, module){
-
 var Class = require('../Class/Class'),
 	Extras = require('../Class/Class.Extras'),
 	Chain = Extras.Chain,
@@ -189,5 +187,3 @@ var pullInstance = function(fps){
 //<!amd>
 if (!has('amd')) require('../Core/Core').global.Fx = Fx;
 //</!amd>
-
-});

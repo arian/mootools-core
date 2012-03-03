@@ -20,60 +20,6 @@ provides: [Core, MooTools, Type, typeOf, instanceOf, Native]
 ...
 */
 
-if (typeof has != 'function') (function(){
-
-var features = this.has || (this.global && this.global.has) || {};
-
-this.has = function(feature){
-	return features[feature] || false;
-};
-
-})();
-
-if (typeof define == 'undefined') (function(){
-
-var loaded = {};
-
-this.require = function(name){
-	return loaded[name];
-};
-
-var define = this.define = function(id, deps, fn){
-	if (typeof deps == 'function') fn = deps;
-	var module = {exports: {}};
-	var require = function(name){
-		name = normalize(name, id);
-		return loaded[name];
-	};
-	fn.call(module.exports, require, module.exports, module);
-	loaded[id] = module.exports;
-};
-
-define.amd = {};
-//<!amd>
-if (!has('amd')) delete define.amd;
-//</!amd>
-
-var normalize = function(name, relative){
-	if (relative == null || name.slice(0, 1) != '.') return name;
-	relative = relative.split('/');
-	if (name.slice(0, 2) == './'){
-		name = name.slice(2);
-		relative.pop();
-	}
-	if (name.slice(0, 3) == '../') relative.pop();
-	while (name.slice(0, 3) == '../'){
-		name = name.slice(3);
-		relative.pop();
-	}
-	relative.push(name);
-	return relative.join('/');
-};
-
-})();
-
-define('MooTools/1/Core/Core', function(require, exports){
-
 exports.MooTools = {
 	version: '1.5.0dev',
 	build: '%build%'
@@ -570,5 +516,3 @@ exports.$unlink = function(object){
 //<!amd>
 if (!has('amd')) Object.append(exports.global, exports);
 //</!amd>
-
-});

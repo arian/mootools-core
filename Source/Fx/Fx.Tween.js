@@ -14,8 +14,6 @@ provides: [Fx.Tween, Element.fade, Element.highlight]
 ...
 */
 
-define('MooTools/1/Fx/Fx.Tween', function(require, exports, module){
-
 var Class = require('../Class/Class'),
 	Fx = require('./Fx'),
 	CSS = require('./Fx.CSS'),
@@ -114,7 +112,5 @@ Element.implement({
 		}.bind(this));
 		return this;
 	}
-
-});
 
 });

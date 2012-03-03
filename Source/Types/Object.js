@@ -14,8 +14,6 @@ provides: [Object, Hash]
 ...
 */
 
-define('MooTools/1/Types/Object', function(require, exports, module){
-
 var Object = module.exports = require('../Core/Core').Object;
 
 //<1.2compat>
@@ -211,5 +209,3 @@ Hash.extend = Object.append;
 Hash.alias({indexOf: 'keyOf', contains: 'hasValue'});
 
 //</1.2compat>
-
-});

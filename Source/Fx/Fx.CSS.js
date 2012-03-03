@@ -14,8 +14,6 @@ provides: Fx.CSS
 ...
 */
 
-define('MooTools/1/Fx/Fx.CSS', function(require, exports, module){
-
 var Class = require('../Class/Class'),
 	Element = require('../Element/Element.Style'),
 	Fx = require('./Fx'),
@@ -158,5 +156,3 @@ CSS.Parsers = {
 CSS.Parsers = new Hash(CSS.Parsers);
 
 //</1.2compat>
-
-});

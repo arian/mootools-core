@@ -14,13 +14,12 @@ provides: [Element.Delegation]
 ...
 */
 
-define('MooTools/1/Element/Element.Delegation', function(require, exports, module){
-
 var Array = require('../Types/Array'),
 	Element = module.exports = require('./Element').Element,
 	Browser = require('../Browser/Browser'),
 	Window = Browser.Window,
-	Document = Browser.Document;
+	Document = Browser.Document,
+	Slick = require('../Slick/Slick.Parser');
 
 require('./Element.Event');
 
@@ -202,6 +201,4 @@ var delegation = {
 [Element, Window, Document].invoke('implement', {
 	addEvent: relay(addEvent, delegation.addEvent),
 	removeEvent: relay(removeEvent, delegation.removeEvent)
-});
-
 });

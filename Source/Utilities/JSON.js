@@ -16,8 +16,6 @@ provides: JSON
 ...
 */
 
-define('MooTools/1/Utilities/JSON', function(require, exports, module){
-
 var Core = require('../Core/Core'),
 	typeOf = Core.typeOf,
 	global = Core.global,
@@ -93,5 +91,3 @@ exports.decode = function(string, secure){
 //<!amd>
 if (!has('amd')) Object.append(global.JSON || (global.JSON = {}), exports);
 //</!amd>
-
-});

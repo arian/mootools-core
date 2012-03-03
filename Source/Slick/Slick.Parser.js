@@ -6,8 +6,6 @@ provides: Slick.Parser
 ...
 */
 
-define('Slick/Slick.Parser', function(require, exports){
-
 var parsed,
 	separatorIndex,
 	combinatorIndex,
@@ -229,5 +227,3 @@ Slick.escapeRegExp = escapeRegExp;
 /*<!amd>*/
 if (!_global.Slick) _global.Slick = Slick;
 /*</!amd>*/
-
-});

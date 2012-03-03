@@ -14,8 +14,6 @@ provides: Element.Style
 ...
 */
 
-define('MooTools/1/Element/Element.Style', function(require, exports, module){
-
 var Element = module.exports = require('./Element').Element;
 
 //<1.2compat>
@@ -200,6 +198,4 @@ Element.ShortStyles = {margin: {}, padding: {}, border: {}, borderWidth: {}, bor
 	Short.borderWidth[bdw] = Short[bd][bdw] = All[bdw] = '@px';
 	Short.borderStyle[bds] = Short[bd][bds] = All[bds] = '@';
 	Short.borderColor[bdc] = Short[bd][bdc] = All[bdc] = 'rgb(@, @, @)';
-});
-
 });

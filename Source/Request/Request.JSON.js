@@ -14,8 +14,6 @@ provides: Request.JSON
 ...
 */
 
-define('MooTools/1/Request/Request.JSON', function(require, exports, module){
-
 var Class = require('../Class/Class'),
 	Request = require('./Request'),
 	JSON = require('../Utilities/JSON');
@@ -48,7 +46,5 @@ Request.JSON = module.exports = new Class({
 		if (json == null) this.onFailure();
 		else this.onSuccess(json, text);
 	}
-
-});
 
 });

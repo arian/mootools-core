@@ -7,8 +7,6 @@ requires: Slick.Parser
 ...
 */
 
-define('Slick/Slick.Finder', function(require, exports){
-
 var Slick = require('./Slick.Parser');
 
 var local = {},
@@ -984,5 +982,3 @@ Slick.uidOf = function(node){
 var _global = ((typeof window != 'undefined') && window) || ((typeof global != 'undefined') && global);
 if (!_global.Slick) _global.Slick = Slick;
 /*</!amd>*/
-
-});

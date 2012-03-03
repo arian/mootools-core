@@ -14,8 +14,6 @@ provides: [DOMReady, DomReady]
 ...
 */
 
-define('MooTools/1/Utilities/DOMReady', function(require, exports, module){
-
 var global = require('../Core/Core').global,
 	Browser = require('../Browser/Browser'),
 	Element = require('../Element/Element').Element;
@@ -113,5 +111,3 @@ window.addEvent('load', function(){
 module.exports = function(fn){
 	window.addEvent('domready', fn);
 };
-
-});

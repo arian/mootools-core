@@ -14,8 +14,6 @@ provides: [Class.Extras, Chain, Events, Options]
 ...
 */
 
-define('MooTools/1/Class/Class.Extras', function(require, exports){
-
 var Class = require('./Class'),
 	Array = require('../Types/Array'),
 	Core = require('../Core/Core'),
@@ -126,5 +124,3 @@ exports.Options = new Class({
 //<!amd>
 if (!has('amd')) Object.append(Core.global, exports);
 //</!amd>
-
-});

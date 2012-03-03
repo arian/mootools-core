@@ -14,8 +14,6 @@ provides: Function
 ...
 */
 
-define('MooTools/1/Types/Function', function(require, exports, module){
-
 var Function = module.exports = require('../Core/Core').Function;
 
 Function.extend({
@@ -130,5 +128,3 @@ if (Object.create == Function.prototype.create) Object.create = null;
 require('../Core/Core').global.$try = Function.attempt;
 
 //</1.2compat>
-
-});

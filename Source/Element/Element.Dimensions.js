@@ -18,8 +18,6 @@ provides: [Element.Dimensions]
 ...
 */
 
-define('MooTools/1/Element/Element.Dimensions', function(require, exports, module){
-
 var Element = module.exports = require('./Element').Element,
 	Browser = require('../Browser/Browser'),
 	Window = Browser.Window,
@@ -283,7 +281,5 @@ Element.alias({position: 'setPosition'}); //compatability
 	getLeft: function(){
 		return this.getPosition().x;
 	}
-
-});
 
 });

@@ -17,8 +17,6 @@ provides: Cookie
 ...
 */
 
-define('MooTools/1/Utilities/Cookie', function(require, exports, module){
-
 var Class = require('../Class/Class'),
 	Options = require('../Class/Class.Extras').Options,
 	Browser = require('../Browser/Browser');
@@ -82,5 +80,3 @@ Cookie.dispose = function(key, options){
 //<!amd>
 if (!has('amd')) require('../Core/Core').global.Cookie = Cookie;
 //</!amd>
-
-});

@@ -17,8 +17,6 @@ provides: Fx.Transitions
 ...
 */
 
-define('MooTools/1/Fx/Fx.Transitions', function(require, exports){
-
 var Fx = require('./Fx');
 
 //<1.2compat>
@@ -116,6 +114,4 @@ exports.extend({
 	exports[transition] = new Fx.Transition(function(p){
 		return Math.pow(p, i + 2);
 	});
-});
-
 });

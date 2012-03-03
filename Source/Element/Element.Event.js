@@ -14,8 +14,6 @@ provides: Element.Event
 ...
 */
 
-define('MooTools/1/Element/Element.Event', function(require, exports, module){
-
 var Array = require('../Types/Array'),
 	Element = module.exports = require('./Element').Element,
 	Browser = require('../Browser/Browser'),
@@ -197,5 +195,3 @@ if (!window.addEventListener){
 Element.Events = new Hash(Element.Events);
 
 //</1.2compat>
-
-});

@@ -14,8 +14,6 @@ provides: Number
 ...
 */
 
-define('MooTools/1/Types/Number', function(require, exports, module){
-
 var Number = module.exports = require('../Core/Core').Number;
 
 Number.implement({
@@ -54,5 +52,3 @@ Number.alias('each', 'times');
 	});
 	Number.implement(methods);
 })(['abs', 'acos', 'asin', 'atan', 'atan2', 'ceil', 'cos', 'exp', 'floor', 'log', 'max', 'min', 'pow', 'sin', 'sqrt', 'tan']);
-
-});

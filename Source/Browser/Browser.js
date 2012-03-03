@@ -14,8 +14,6 @@ provides: [Browser, Window, Document]
 ...
 */
 
-define('MooTools/1/Browser/Browser', function(require, exports, module){
-
 var Core = require('../Core/Core'),
 	global = Core.global,
 	typeOf = Core.typeOf,
@@ -268,5 +266,3 @@ if (!has('amd')) Object.append(global, {
 	'Document': Document
 });
 //</!amd>
-
-});

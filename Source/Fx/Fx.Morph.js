@@ -14,8 +14,6 @@ provides: Fx.Morph
 ...
 */
 
-define('MooTools/1/Fx/Fx.Morph', function(require, exports, module){
-
 var Class = require('../Class/Class'),
 	Fx = require('./Fx'),
 	CSS = require('./Fx.CSS'),
@@ -80,7 +78,5 @@ Element.implement({
 		this.get('morph').start(props);
 		return this;
 	}
-
-});
 
 });

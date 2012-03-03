@@ -16,8 +16,6 @@ provides: [Element, Elements, $, $$, Iframe, Selectors]
 
 // TODO: I believe there was an issue to wrap `var Element` with a function.
 
-define('MooTools/1/Element/Element', function(require, exports){
-
 var Core = require('../Core/Core'),
 	Type = Core.Type,
 	typeOf = Core.typeOf,
@@ -29,9 +27,9 @@ var Core = require('../Core/Core'),
 	Function = require('../Types/Function'),
 	Object = require('../Types/Object'),
 	Number = require('../Types/Number'),
-	Slick = require('Slick/Slick.Parser');
+	Slick = require('../Slick/Slick.Parser');
 
-require('Slick/Slick.Finder');
+require('../Slick/Slick.Finder');
 
 //<1.2compat>
 var Hash = require('../Core/Core').Hash;
@@ -1058,5 +1056,3 @@ if (!has('amd')) Object.append(Core.global, {
 	IFrame: IFrame
 });
 //</!amd>
-
-});

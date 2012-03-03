@@ -14,8 +14,6 @@ provides: String
 ...
 */
 
-define('MooTools/1/Types/String', function(require, exports, module){
-
 var String = module.exports = require('../Core/Core').String;
 
 String.implement({
@@ -82,7 +80,5 @@ String.implement({
 			return (object[name] != null) ? object[name] : '';
 		});
 	}
-
-});
 
 });
