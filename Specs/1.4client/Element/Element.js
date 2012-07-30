@@ -52,7 +52,6 @@ describe('Element', function(){
 			expect(div.get('data-custom')).toEqual(null);
 		});
 
-
 	});
 
 	describe('Element.set', function(){
@@ -303,6 +302,26 @@ describe('Element', function(){
 			expect(textarea.get('value')).toEqual('');
 		});
 
+	});
+
+	describe('add/remove class with multiple classes', function(){
+
+		it('should add multiple classes', function(){
+			var element = new Element('div');
+			element.addClass('a b c d');
+			expect(element.className).toBe('a b c d');
+			element.addClass('a e f');
+			expect(element.className).toBe('a b c d e f');
+		});
+
+		it('should remove multiple classes', function(){
+			var element = new Element('div');
+			element.className = 'a b c d e f';
+			element.removeClass('a b c d');
+			expect(element.className).toBe('e f');
+			element.removeClass('a e f');
+			expect(element.className).toBe('');
+		});
 	});
 
 });

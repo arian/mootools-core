@@ -694,25 +694,6 @@ Element.implement({
 		return this;
 	},
 
-	hasClass: function(className){
-		return this.className.clean().contains(className, ' ');
-	},
-
-	addClass: function(className){
-		if (!this.hasClass(className)) this.className = (this.className + ' ' + className).clean();
-		return this;
-	},
-
-	removeClass: function(className){
-		this.className = this.className.replace(new RegExp('(^|\\s)' + className + '(?:\\s|$)'), '$1');
-		return this;
-	},
-
-	toggleClass: function(className, force){
-		if (force == null) force = !this.hasClass(className);
-		return (force) ? this.addClass(className) : this.removeClass(className);
-	},
-
 	adopt: function(){
 		var parent = this, fragment, elements = Array.flatten(arguments), length = elements.length;
 		if (length > 1) parent = fragment = document.createDocumentFragment();
@@ -775,6 +756,41 @@ Element.implement({
 			});
 		});
 		return queryString.join('&');
+	}
+
+});
+
+var classes = function(className){
+	var classNames = className.clean().split(" "), uniques = {};
+	return classNames.filter(function(className){
+		if (className !== "" && !uniques[className]) return uniques[className] = className;
+	}).sort();
+};
+
+Element.implement({
+
+	hasClass: function(className){
+		return classes(this.className).indexOf(className) != -1;
+	},
+
+	addClass: function(className){
+		this.className = classes(this.className + " " + className).join(" ");
+		return this;
+	},
+
+	removeClass: function(className){
+		var classNames = classes(this.className);
+		classes(className).forEach(function(className){
+			var index = classNames.indexOf(className);
+			if (index > -1) classNames.splice(index, 1);
+		});
+		this.className = classNames.join(" ");
+		return this;
+	},
+
+	toggleClass: function(className, force){
+		if (force == null) force = !this.hasClass(className);
+		return (force) ? this.addClass(className) : this.removeClass(className);
 	}
 
 });
