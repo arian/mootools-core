@@ -814,29 +814,29 @@ Element.implement({
 
 	dispose: function(){
 		return (this.parentNode) ? this.parentNode.removeChild(this) : this;
-	},
+	}
+
+});
+
+var hasClonedIDBug = document.createElement('div').getAttributeNode('id');
+
+var cloneNode = /*<ltIE8>*/hasClonedIDBug ? function(node, contents, keepid){
+	var oldID = node.get('id');
+	node.erase('id');
+	var clone = node.cloneNode(contents);
+	node.set('id', oldID);
+	if (keepid) clone.set('id', oldID);
+	return clone;
+} : /*</ltIE8>*/function(node, contents){
+	return node.cloneNode(contents);
+};
+
+Element.implement({
 
 	clone: function(contents, keepid){
 		contents = contents !== false;
-		var cloneNode = function(){return false};
-		/*<ltIE8>*/
-		if (Browser.ie6 || Browser.ie7){
-			var self = this;
-			cloneNode = function(contents){
-				var oldID = '' + self.id;
-				self.removeAttribute('id');
-				var clonedHTML = self.outerHTML;
-				var cloned = document.createElement('div');
-				cloned.innerHTML = clonedHTML;
-				self.id = oldID;
-				var clone = cloned.firstChild;
-				if (keepid) clone.id = oldID;
-				if (!contents & clone.tagName !== 'INPUT' ) clone.innerHTML = '';
-				return clone;
-			}
-		}
-		/*</ltIE8>*/
-		var clone = cloneNode(contents) || this.cloneNode(contents), ce = [clone], te = [this], i;
+
+		var clone = cloneNode(this, contents, keepid), ce = [clone], te = [this], i;
 
 		if (contents){
 			ce.append(Array.from(clone.getElementsByTagName('*')));
@@ -867,7 +867,6 @@ Element.implement({
 			for (i = co.length; i--;) co[i].outerHTML = to[i].outerHTML;
 		}
 		/*</ltIE9>*/
-
 
 		return document.id(clone);
 	}
@@ -1065,7 +1064,7 @@ testForm = null;
 /*</ltIE9>*/
 
 /*<IE>*/
-if (document.createElement('div').getAttributeNode('id')) Element.Properties.id = {
+if (hasClonedIDBug) Element.Properties.id = {
 	set: function(id){
 		this.id = this.getAttributeNode('id').value = id;
 	},

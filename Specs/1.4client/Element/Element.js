@@ -8,9 +8,9 @@ provides: [Element.Event.Specs]
 */
 describe('Element', function(){
 
-	describe('Element.getProperty', function(){
+	describe('Element.clone', function(){
 
-		it('should cloneNode properly on IE6/7', function(){
+		it('should clone an input element with ID and remove the ID correctly', function(){
 
 			var div = new Element('div');
 			div.inject(document.documentElement);
@@ -22,19 +22,30 @@ describe('Element', function(){
 
 			expect($$('input[id=Q1]').length).toEqual(0);
 			expect($$('input#Q1').length).toEqual(0);
-			clone.dispose();
+
+			div = div.destroy();
+
+		});
+
+		it('should clone nested elements and remove their IDs.', function(){
 
 			var ul = new Element('ul',{id:'test'});
-			ul.set('html', '<li id="li1"></li><li id="li2"></li>'));
+			ul.set('html', '<li id="li1"></li><li id="li2"></li>');
 			ul.inject(document.documentElement);
 
 			var ulc = ul.clone();
 			ulc.replaces(ul);
 
-			expect($$('li#li1').length).toEqual(1);
+			expect($$('li#li1').length).toEqual(0);
 
+			ul = ul.destroy();
+			ulc = ulc.destroy();
 
 		});
+
+	});
+
+	describe('Element.getProperty', function(){
 
 		it('should get the attrubte of a form when the form has an input with as ID the attribute name', function(){
 			var div = new Element('div');
